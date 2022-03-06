@@ -19,7 +19,7 @@
           </div>
         <% end %>
         <br>
-        <%= link_to user_google_oauth2_omniauth_authorize_path, class: 'form-control btn btn-outline-secondary' do %>
+        <%= link_to user_google_oauth2_omniauth_authorize_path, class: 'form-control btn btn-outline-secondary', method: :post do %>
           <i class="fab fa-google"></i>
           Sign in with Google
         <% end %>
