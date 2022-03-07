@@ -12,5 +12,4 @@ Rails.application.routes.draw do
   end
 
   resources :reviews, only: %i[show]
-
 end
