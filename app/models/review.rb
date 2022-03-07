@@ -4,4 +4,3 @@ class Review < ApplicationRecord
   validates :rating, inclusion: 0..5
   validates :rating, numericality: { only_integer: true }
 end
-end
