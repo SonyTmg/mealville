@@ -8,14 +8,16 @@ class EventsController < ApplicationController
   end
 
   def new
-    @events = Event.new
+    @event = Event.new
   end
 
   def create
     @event = Event.new(event_params)
+    @event.user_id = current_user.id
     if @event.save
-      redirect_to @event, notice: 'Restaurant was successfully created.'
+      redirect_to @event, notice: 'Event was successfully created.'
     else
+      flash[:alert] = "Could not create Event."
       render :new
     end
   end
@@ -49,6 +51,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:name, :address, :phone_number, :category)
+    params.require(:event).permit(:name, :description, :location, :price, :capacity, :start_time, :end_time, :date, photos: [])
   end
 end

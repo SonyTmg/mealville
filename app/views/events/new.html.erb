@@ -1,1 +1,13 @@
-<h1>Form to create new listing</h1>
+<h2>Form to create new listing</h2>
+<%= simple_form_for @event do |f| %>
+  <%= f.input :name %>
+  <%= f.input :price %>
+  <%= f.input :description %>
+  <%= f.input :capacity %>
+  <%= f.input :location %>
+  <%= f.input :start_time, html5: true %>
+  <%= f.input :end_time, html5: true %>
+  <%= f.input :date,  html5: true %>
+  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+  <%= f.button :submit , class: 'btn btn-success text-white'%>
+<% end %>
