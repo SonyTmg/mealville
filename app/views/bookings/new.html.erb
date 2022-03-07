@@ -1,0 +1,57 @@
+<div class="container">
+  <h1 class="h2 text-center">Booking Details</h1>
+    <p></p>
+  <div class="row">
+    <div class="col-6">
+      <label for="card details" class="col-sm-2 col-form-label"></label>
+      <input type="number" class="form-control" id="inputNumber" placeholder="card number">
+      <label for="card details" class="col-sm-2 col-form-label"></label>
+      <input type="number" class="form-control" id="inputNumber" placeholder="expiry">
+      <label for="card details" class="col-sm-2 col-form-label"></label>
+      <input type="number" class="form-control" id="inputNumber" placeholder="ccv">
+
+
+       <%= simple_form_for [@booking.event, @booking], method: :post, url: event_confirm_booking_path do |f| %>
+        <%= f.input :start_date, as: :hidden, html5: true %>
+        <%= f.input :end_date, as: :hidden, html5: true %>
+        <%= f.association :user, as: :hidden, input_html: { value: current_user.id } %>
+        <%= f.association :yacht, as: :hidden %>
+        <%= f.button :submit, class: 'btn-submit' %>
+      <% end %>
+    </div>
+    <div class="col-6">
+      <div class="row">
+        <div class="col-12">
+          <div class="row">
+            <div class="col-4">
+              <img src="<%= url_for(@booking.event.photos[1]) %>" alt="" class="img-fluid">
+            </div>
+            <div class="col-8">
+              <p>
+                <%= @booking.event.description %>
+              </p>
+              <p>
+                Booked by: <%= @booking.user.email %>
+              </p>
+              <p>
+                Total Price: <%= @booking.event.price %>
+              </p>
+            </div>
+          </div>
+        </div>
+     </div>
+    </div>
+  </div>
+  <div class="row justify-content-center mt-5">
+    <div class="col-12">
+      <h4>Terms and conditions</h4>
+      <small class="text-muted">Reservations for stays and MealVille Experiences made on or before 14 March 2020, with a check-in date within the next 45 days from today, are covered by the policy and may be cancelled before check-in. Guests who cancel will have cancellation and refund options, and Hosts can cancel without charge or impact to their Superhost status. Airbnb will either refund, or issue travel credit that includes all service fees for covered cancellations. In order to cancel under the policy, you will be required to attest to the facts of and/or provide supporting documentation for your extenuating circumstance.
+
+The Host’s cancellation policy will apply as usual to reservations made after 14 March 2020, except where a guest or Host is sick with COVID-19.
+
+Cancellations will be handled according to the extenuating circumstances coverage in effect at the time of submission, and reservations that were already cancelled will not be reconsidered.
+
+If a reservation has already begun (the check-in has passed) this extenuating circumstance does not apply.</small>
+    </div>
+  </div>
+</div>
