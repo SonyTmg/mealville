@@ -23,6 +23,7 @@ class EventsController < ApplicationController
   def my_events
     @user = current_user
     @my_events = @user.events
+  end
 
   def edit
   end
