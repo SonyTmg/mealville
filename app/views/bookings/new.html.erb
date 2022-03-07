@@ -15,7 +15,7 @@
         <%= f.input :start_date, as: :hidden, html5: true %>
         <%= f.input :end_date, as: :hidden, html5: true %>
         <%= f.association :user, as: :hidden, input_html: { value: current_user.id } %>
-        <%= f.association :yacht, as: :hidden %>
+        <%= f.association :event, as: :hidden %>
         <%= f.button :submit, class: 'btn-submit' %>
       <% end %>
     </div>
