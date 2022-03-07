@@ -30,4 +30,10 @@ class BookingsController < ApplicationController
     redirect_to event_bookings_path(event_id: @booking.event.id)
   end
 
+  private
+
+  def booking_params
+    params.require(:booking).permit(:event_id, :user_id)
+  end
+
 end
