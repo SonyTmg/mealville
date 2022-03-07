@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  def new
+  def neww
     @booking = Booking.new(event_id: params[:event_id])
   end
 
@@ -8,22 +8,10 @@ class BookingsController < ApplicationController
     @booking.user_id = current_user.id
     if @booking.valid?
       # redirect_to event_confirm_booking_path(event_id: params[:event_id])
-      render 'new'
-    else
-      @booking = Booking.new
-      flash[:alert] = "Error processing booking. Try again later"
-      redirect_back(fallback_location: root_path)
-    end
-  end
-
-  def confirm
-    @booking = Booking.new(booking_params)
-    @booking.user_id = current_user.id
-    if @booking.valid?
-      @booking.save
       render 'success'
     else
       @booking = Booking.new
+      flash[:alert] = "Error processing booking. Try again later"
       render 'new'
     end
   end
@@ -39,7 +27,7 @@ class BookingsController < ApplicationController
   def destroy
     @booking = Booking.find(params[:id])
     @booking.destroy
-    redirect_to event_bookings_path(yacht_id: @booking.event.id)
+    redirect_to event_bookings_path(event_id: @booking.event.id)
   end
 
 end

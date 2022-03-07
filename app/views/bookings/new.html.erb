@@ -11,7 +11,7 @@
       <input type="number" class="form-control" id="inputNumber" placeholder="ccv">
 
 
-       <%= simple_form_for [@booking.event, @booking], method: :post, url: event_confirm_booking_path do |f| %>
+       <%= simple_form_for [@booking.event, @booking], method: :post, url: bookings_path do |f| %>
         <%= f.input :start_date, as: :hidden, html5: true %>
         <%= f.input :end_date, as: :hidden, html5: true %>
         <%= f.association :user, as: :hidden, input_html: { value: current_user.id } %>
