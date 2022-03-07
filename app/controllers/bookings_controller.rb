@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
-  def neww
-    @booking = Booking.new(event_id: params[:event_id])
+
+  def show
   end
 
   def create
@@ -12,7 +12,7 @@ class BookingsController < ApplicationController
     else
       @booking = Booking.new
       flash[:alert] = "Error processing booking. Try again later"
-      render 'new'
+      # render 'events/show'
     end
   end
 
@@ -27,7 +27,7 @@ class BookingsController < ApplicationController
   def destroy
     @booking = Booking.find(params[:id])
     @booking.destroy
-    redirect_to event_bookings_path(event_id: @booking.event.id)
+    redirect_to bookings_path
   end
 
   private
