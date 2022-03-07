@@ -5,4 +5,12 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'dashboard#general'
   get '/dashboard/host', to: 'dashboard#host'
   patch '/toggle-host', to: 'users#toggle_host'
+
+  resources :events do
+    resources :bookings, only: [] do
+      resources :reviews, only: %i[new create index]
+    end
+  end
+
+  resources :reviews, only: %i[show]
 end
