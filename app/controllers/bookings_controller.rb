@@ -12,7 +12,7 @@ class BookingsController < ApplicationController
     else
       @booking = Booking.new
       flash[:alert] = "Error processing booking. Try again later"
-      # render 'events/show'
+      render 'events/show'
     end
   end
 
