@@ -5,6 +5,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:google_oauth2]
+  has_many :events, dependent: :destroy
 
   def self.from_google(email:, full_name:, uid:, avatar_url:)
     where(uid: uid).first_or_initialize do |user|
