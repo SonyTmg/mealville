@@ -17,27 +17,30 @@ class Host::EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.user_id = current_user.id
     if @event.save
-      redirect_to @event, notice: 'Event was successfully created.'
+      redirect_to host_event_path(id: @event.id), notice: 'Event was successfully created'
     else
-      flash[:alert] = "Could not create Event."
+      flash[:alert] = "Could not create Event"
       render :new
     end
   end
 
   def edit
+    @event = Event.find(params[:id])
   end
 
   def update
-    if @my_event.update(event_params)
-      redirect_to my_events_events_path
+    if @event.update(event_params)
+      flash[:notice] = "Event succesfully updated"
+      redirect_to host_event_path(id: @event.id)
     else
-      render 'edit'
+      flash[:error] = "Event couldn't be updated"
+      redirect_back fallback_location: :host_events_path
     end
   end
 
   def destroy
-    @my_event.destroy
-    redirect_to my_events_events_path
+    @event.destroy
+    redirect_to host_events_path
   end
 
   private
