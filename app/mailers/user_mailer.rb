@@ -7,5 +7,8 @@ class UserMailer < ApplicationMailer
   end
 
   def booking_confirm_email
+    @user = params[:user]
+    @booking = params[:booking]
+    mail(to: @user.email, subject: "Your booking has been confirmed.")
   end
 end
