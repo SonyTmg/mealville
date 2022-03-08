@@ -1,1 +1,28 @@
-<h1> This is where it shows the browse all</h1>
+<div class="wrap bg-2">
+  <%#= image_tag "background.jpeg", class:"background-image bg-2" %>
+  <div class="container my-5 d-flex justify-content-center gap-3 flex-wrap py-5 ">
+    <% @events.each do |event| %>
+      <%= link_to event_path(id: event.id), class:"text-decoration-none text-black" do %>
+        <div class="card">
+          <img src="<%= url_for(event.photos[0]) %>" alt="" class="img-fluid img-object-fit-cover card-img-top">
+          <div class="card-body py-2 px-3">
+            <div class="card-title">
+              <h1><%= event.name %></h1>
+            </div>
+            <div class="card-divider">
+              <div class="card-content w-100 d-flex justify-content-between">
+                <div>
+                  <p> $<%= event.price %> /day</p>
+                  <p> <i class="fa fa-map-marked-alt" aria-hidden="true"></i> <%= event.location %> </p>
+                </div>
+                <div>
+                  <p><%= '⭐️' * [3, 4, 5].sample  %></p>
+                </div>
+              </div>
+            </div>
+        </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
