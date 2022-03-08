@@ -1,1 +1,28 @@
 <h1>Shows the details of the listing</h1>
+<div class="col-12 col-lg-4 border border-3 p-4">
+  <div class="row flex-column">
+    <div class="col-12">
+      <div class="row mb-4">
+        <div class="col-12">
+          <p class="h2 text-center">
+            $<%= @event.price %>AUD
+          </p>
+        </div>
+        <div class="col-12 text-center">
+          ⭐️⭐️⭐️⭐️
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <p>
+        <%= @event.description %>
+        </p>
+    </div>
+    <div class="col-12">
+      <%= simple_form_for [@event, @booking] do |f| %>
+        <%= f.association :yacht, as: :hidden %>
+        <%= f.button :submit, class: 'btn-submit' %>
+      <% end %>
+    </div>
+  </div>
+</div
