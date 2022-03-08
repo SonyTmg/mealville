@@ -27,6 +27,7 @@ class BookingsController < ApplicationController
     @booking.user_id = current_user.id
     if @booking.valid?
       # redirect_to event_confirm_booking_path(event_id: params[:event_id])
+      @booking.save
       render 'success'
     else
       @booking = Booking.new
