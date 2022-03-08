@@ -1,6 +1,24 @@
 class BookingsController < ApplicationController
 
-  def show
+  def index
+    @bookings = Booking.all
+    @my_bookings = @bookings.where(user: current_user)
+  end
+
+  def new
+    @booking = Booking.new(event_id: params[:event_id])
+  end
+
+  def confirm
+    @booking = Booking.new(booking_params)
+    @booking.user_id = current_user.id
+    if @booking.valid?
+      @booking.save
+      render 'success'
+    else
+      @booking = Booking.new
+      render 'new'
+    end
   end
 
   def create
@@ -13,13 +31,8 @@ class BookingsController < ApplicationController
     else
       @booking = Booking.new
       flash[:alert] = "Error processing booking. Try again later"
-      render 'events/show'
+      redirect_back(fallback_location: root_path)
     end
-  end
-
-  def index
-    @bookings = Booking.all
-    @my_bookings = @bookings.where(user: current_user)
   end
 
   def success
