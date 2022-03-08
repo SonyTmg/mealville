@@ -9,4 +9,16 @@ class Event < ApplicationRecord
                   using: {
                     tsearch: { prefix: true } # <-- now `superman batm` will return something!
                   }
+
+  def formatted_date
+    date.strftime("%a %d, %B %Y")
+  end
+
+  def formatted_start_time
+    start_time.strftime("%I:%M %p")
+  end
+
+  def formatted_end_time
+    end_time.strftime("%I:%M %p")
+  end
 end

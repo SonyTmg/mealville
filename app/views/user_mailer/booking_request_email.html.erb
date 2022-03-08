@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hello, <%= @user.full_name || @user.first_name %></h1>
+    <p>You have a request for a booking.</p>
+    <p>Please check your Dashboard to accept it or <%= link_to 'Confirm', host_event_url(id: @event.id) %></p>
+    <p>MealVille Team</p>
+  </body>
+</html>

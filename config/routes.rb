@@ -2,14 +2,14 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   root to: 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  get '/dashboard', to: 'dashboard#general'
+  get '/dashboard', to: 'dashboard#index'
   patch '/become-host', to: 'users#become_host'
 
   # These routes are isolated for host users, that do not affect general users.
   # These will all fall under a /host route eg:
   # host/dashboard, host/events, host/bookings
   namespace :host do
-    get '/dashboard', to: 'dashboard#index'
+    get '/dashboard', to: 'events#index'
 
     resources :events do
       resources :bookings, only: %i[] do
@@ -21,7 +21,9 @@ Rails.application.routes.draw do
   end
 
   resources :events do
-    resources :bookings, only: %i[create new]
+    resources :bookings, only: %i[create new] do
+      patch '/cancel', to: 'bookings#cancel'
+    end
   end
 
   resources :bookings, only: %i[destroy show index] do

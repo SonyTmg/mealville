@@ -6,6 +6,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:google_oauth2]
   has_many :events, dependent: :destroy
+  has_many :bookings
 
   def self.from_google(email:, full_name:, uid:, avatar_url:)
     where(uid: uid).first_or_initialize do |user|
@@ -16,6 +17,10 @@ class User < ApplicationRecord
       user.skip_password_validation = true
       user.save!
     end
+  end
+
+  def name
+    full_name || "#{first_name} #{last_name}"
   end
 
   protected

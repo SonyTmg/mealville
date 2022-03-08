@@ -1,7 +1,4 @@
 class DashboardController < ApplicationController
-  def general
-  end
-
-  def host
+  def index
   end
 end
