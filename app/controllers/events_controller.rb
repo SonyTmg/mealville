@@ -11,7 +11,7 @@ class EventsController < ApplicationController
       }
     end
     if params[:query].present?
-      @events = Event.search_by_name_description_and_location(params[:query])
+      @events = Event.search_by_name_cuisine_description_and_location(params[:query])
     else
       @events = Event.all
     end
