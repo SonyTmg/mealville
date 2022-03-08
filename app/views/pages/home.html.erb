@@ -13,7 +13,7 @@
         <div class="mb-3">
           <%= form_tag events_path, method: :get, class:"input-group row m-0" do %>
           <div class="col-12 col-md-7" style="padding: 0px!important">
-            <%= text_field_tag :query, params[:query], class: "form-control bg-light bg-gradient bg-opacity-10 text-white", placeholder: "Search by an Event name or a Location" %>
+            <%= text_field_tag :query, params[:query], class: "form-control bg-light bg-gradient bg-opacity-10 text-white", placeholder: "Search by an Event name, a Cuisine or a Location" %>
           </div>
           <div class="col-12 col-md-3" style="padding: 0px!important">
             <%= text_field_tag :dates, params[:dates], class: "form-control bg-light bg-gradient bg-opacity-10 text-white", placeholder: "Search by a date range", data: {controller: 'flatpickr', flatpickr_target: 'dates'} %>
