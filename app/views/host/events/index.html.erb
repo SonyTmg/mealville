@@ -25,6 +25,7 @@
               <td><%= event.price %></td>
               <td><%= event.capacity %></td>
               <td>
+                <%= link_to 'show', host_event_path(id: event.id) %>
                 <%= link_to 'Edit', edit_host_event_path(id: event.id) %>
                 <%= link_to 'Delete', host_event_path(id: event.id), method: :delete, class: 'text-danger', data: { confirm: 'Are you sure?' } %>
               </td>
