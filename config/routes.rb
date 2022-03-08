@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # These will all fall under a /host route eg:
   # host/dashboard, host/events, host/bookings
   namespace :host do
-    get '/dashboard', to: 'dashboard#index'
+    get '/dashboard', to: 'events#index'
 
     resources :events do
       resources :bookings, only: %i[] do

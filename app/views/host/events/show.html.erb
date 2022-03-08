@@ -15,9 +15,9 @@
       <p>Description: <%= @event.description %></p>
       <p>Price: $<%= @event.price %>AUD</p>
       <p>Capacity: <%= @event.capacity %> person</p>
-      <p>Start Time: <%= @event.start_time %></p>
-      <p>End Time:<%= @event.end_time %></p>
-      <p>Event Date: <%= @event.date %></p>
+      <p>Start Time: <%= @event.formatted_start_time %></p>
+      <p>End Time:<%= @event.formatted_end_time %></p>
+      <p>Event Date: <%= @event.formatted_date %></p>
     </div>
   </div>
   <br>

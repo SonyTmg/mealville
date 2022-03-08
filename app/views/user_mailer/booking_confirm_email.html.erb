@@ -10,10 +10,10 @@
       Booking details:
       <br>
       <ul>
-        <li><%= @booking.event.date %></li>
-        <li><%= @booking.event.start_time %></li>
-        <li><%= @booking.event.end_time %></li>
-        <li><%= @booking.event.location %></li>
+        <li>Event date: <%= @booking.event.formatted_date %></li>
+        <li>Starts at: <%= @booking.event.formatted_start_time %></li>
+        <li>Finishes around: <%= @booking.event.formatted_end_time %></li>
+        <li>Location: <%= @booking.event.location %></li>
       </ul>
     </p>
     <p>See you there,</p>
