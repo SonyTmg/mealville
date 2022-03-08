@@ -6,6 +6,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:google_oauth2]
   has_many :events, dependent: :destroy
+  has_many :bookings
 
   def self.from_google(email:, full_name:, uid:, avatar_url:)
     where(uid: uid).first_or_initialize do |user|
