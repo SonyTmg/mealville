@@ -10,3 +10,9 @@
 .navbar-lewagon .navbar-brand img {
   width: 60px;
 }
+
+/* Fixed the height to avoid scroll overflow */
+.navbar {
+  padding: 0px!important;
+  height: 80px;
+}
