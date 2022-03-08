@@ -3,7 +3,9 @@ class Host::EventsController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
 
   def index
-    @events = current_user.events
+    # https://stackoverflow.com/questions/7549851/rails-where-date-is-greater-than-given-date-query
+    @events = current_user.events.where('date > ?', DateTime.now)
+    @past_events = current_user.events.where('date < ?', DateTime.now)
   end
 
   def show
