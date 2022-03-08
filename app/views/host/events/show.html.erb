@@ -20,13 +20,20 @@
       <p>Event Date: <%= @event.date %></p>
     </div>
   </div>
+  <br>
+  <br>
   <div class="row">
     <div class="col-12">
+      <h3>Bookings</h3>
       <ol>
       <% @event.bookings.each do |booking| %>
         <li>
           <%= booking.user.full_name || booking.user.first_name %>
-          <%= link_to 'confirm', '#' %>
+          <% if booking.confirmed? %>
+            <span class="text-success">Confirmed</span>
+          <% else %>
+            <%= link_to 'confirm', host_event_booking_confirm_path(event_id: @event.id, booking_id: booking.id), method: :patch %>
+          <% end %>
         </li>
        <% end %>
       </ol>
