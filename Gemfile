@@ -9,6 +9,8 @@ gem 'dotenv-rails'
 
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
+# For strong searches
+gem 'pg_search', '~> 2.3.0'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets

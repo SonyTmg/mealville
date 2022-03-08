@@ -15,7 +15,9 @@ height: 50%;
 background-position: center;
 background-repeat: no-repeat;
 background-size: cover;
-height: 100vh;
+
+/* Navbar height = 80px*/
+height: calc(100vh - 80px);
 width: 100%;
 position: relative;
 }

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hello, <%= @user.name %></h1>
+    <p>Your booking for <%= @booking.event.name %> has been confirmed.</p>
+    <p>
+      Booking details:
+      <br>
+      <ul>
+        <li>Event date: <%= @booking.event.formatted_date %></li>
+        <li>Starts at: <%= @booking.event.formatted_start_time %></li>
+        <li>Finishes around: <%= @booking.event.formatted_end_time %></li>
+        <li>Location: <%= @booking.event.location %></li>
+      </ul>
+    </p>
+    <p>See you there,</p>
+    <p>MealVille Team</p>
+  </body>
+</html>

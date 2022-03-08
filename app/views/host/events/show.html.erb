@@ -1,10 +1,44 @@
-<div class="container">
+<div class="container mt-3">
+  <div class="d-flex justify-content-between">
+    <h2>Event - <%= @event.name %></h2>
+    <%= link_to "Edit", edit_host_event_path(id: @event.id), class: 'btn btn-primary' %>
+  </div>
+  <div class="row">
+    <div class="col-9 d-flex flex-wrap gap-1">
+      <% @event.photos.each do |photo| %>
+        <%= cl_image_tag photo.key, width: 300, crop: :fill %>
+      <% end %>
+    </div>
+    <div class="col-3">
+      <strong>Event Info:</strong>
+      <p>Name: <%= @event.name %></p>
+      <p>Description: <%= @event.description %></p>
+      <p>Price: $<%= @event.price %>AUD</p>
+      <p>Capacity: <%= @event.capacity %> person</p>
+      <p>Start Time: <%= @event.formatted_start_time %></p>
+      <p>End Time:<%= @event.formatted_end_time %></p>
+      <p>Event Date: <%= @event.formatted_date %></p>
+    </div>
+  </div>
+  <br>
+  <br>
   <div class="row">
     <div class="col-12">
-      <%= @event.name %>
-      <% @event.photos.each do |photo| %>
-        <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-      <% end %>
+      <h3>Bookings</h3>
+      <ol>
+      <% @event.bookings.each do |booking| %>
+        <li>
+          <%= booking.user.full_name || booking.user.first_name %>
+          <% if booking.confirmed? %>
+            <span class="text-success">Confirmed</span>
+          <% elsif booking.cancelled? %>
+            <span class="text-danger">Cancelled</span>
+          <% else %>
+            <%= link_to 'Confirm', host_event_booking_confirm_path(event_id: @event.id, booking_id: booking.id), method: :patch %>
+          <% end %>
+        </li>
+       <% end %>
+      </ol>
     </div>
   </div>
 </div>
