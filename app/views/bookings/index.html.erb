@@ -11,7 +11,7 @@
           <div class="card-divider">
             <div class="card-content">
               <i class="fa-solid fa-location-dot"></i>
-              <p><%= link_to 'Delete', event_booking_path(id: booking.id, event_id: booking.event.id), method: :delete, data: {:confirm => 'Are you sure?'}, class: "card-btn btn btn-danger text-white" %></p>
+              <p><%= link_to 'Cancel', booking_path(id: booking.id, event_id: booking.event.id), method: :delete, data: {:confirm => 'Are you sure?'}, class: "card-btn btn btn-danger text-white" %></p>
             </div>
           </div>
         </div>
