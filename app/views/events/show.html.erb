@@ -20,7 +20,7 @@
     </div>
     <div class="col-12">
       <%= simple_form_for [@event, @booking] do |f| %>
-        <%= f.association :yacht, as: :hidden %>
+        <%= f.association :event, as: :hidden %>
         <%= f.button :submit, class: 'btn-submit' %>
       <% end %>
     </div>
