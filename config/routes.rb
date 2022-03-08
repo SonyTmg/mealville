@@ -12,14 +12,14 @@ Rails.application.routes.draw do
     get '/dashboard', to: 'dashboard#index'
 
     resources :events do
-      resources :bookings, only: [] do
+      resources :bookings, only: %i[] do
         resources :reviews, only: %i[index show]
       end
     end
   end
 
   resources :events do
-    resources :bookings, only: %i[create]
+    resources :bookings, only: %i[create new]
   end
 
   resources :bookings, only: %i[destroy show index] do
