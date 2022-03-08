@@ -31,8 +31,10 @@
           <%= booking.user.full_name || booking.user.first_name %>
           <% if booking.confirmed? %>
             <span class="text-success">Confirmed</span>
+          <% elsif booking.cancelled? %>
+            <span class="text-danger">Cancelled</span>
           <% else %>
-            <%= link_to 'confirm', host_event_booking_confirm_path(event_id: @event.id, booking_id: booking.id), method: :patch %>
+            <%= link_to 'Confirm', host_event_booking_confirm_path(event_id: @event.id, booking_id: booking.id), method: :patch %>
           <% end %>
         </li>
        <% end %>

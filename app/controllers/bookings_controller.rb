@@ -28,7 +28,7 @@ class BookingsController < ApplicationController
     if @booking.valid?
       # redirect_to event_confirm_booking_path(event_id: params[:event_id])
       @booking.save
-      UserMailer.with(user: current_user).booking_request_email.deliver_later
+      UserMailer.with(user: current_user, event: @booking.event).booking_request_email.deliver_later
       render 'success'
     else
       @booking = Booking.new
@@ -40,10 +40,14 @@ class BookingsController < ApplicationController
   def success
   end
 
-  def destroy
-    @booking = Booking.find(params[:id])
-    @booking.destroy
-    redirect_to bookings_path
+  def cancel
+    @booking = Booking.find(params[:booking_id])
+    @booking.cancelled!
+
+    UserMailer.with(user: @booking.event.user, booking: @booking).booking_cancel_email.deliver_later
+
+    flash[:alert] = "You have cancelled your booking."
+    redirect_back(fallback_location: root_path)
   end
 
   private
