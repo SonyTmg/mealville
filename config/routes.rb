@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     resources :events do
       resources :bookings, only: %i[] do
         resources :reviews, only: %i[index show]
+
+        patch '/confirm', to: 'bookings#confirm'
       end
     end
   end
