@@ -4,6 +4,7 @@ class BookingsController < ApplicationController
   end
 
   def create
+    # this appears as a section of an event's show page
     @booking = Booking.new(booking_params)
     @booking.user_id = current_user.id
     if @booking.valid?
