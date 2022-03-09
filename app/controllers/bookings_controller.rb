@@ -5,8 +5,8 @@ class BookingsController < ApplicationController
     @my_bookings = @bookings.where(user: current_user)
   end
 
-  def new
-    @booking = Booking.new(event_id: params[:event_id])
+  def show
+    @booking = Booking.find(params[:id])
   end
 
   def confirm
@@ -24,12 +24,13 @@ class BookingsController < ApplicationController
   def create
     # this appears as a section of an event's show page
     @booking = Booking.new(booking_params)
+    # @event = Event.find(params[:event_id])
     @booking.user_id = current_user.id
     if @booking.valid?
-      # redirect_to event_confirm_booking_path(event_id: params[:event_id])
       @booking.save
+      redirect_to booking_path(@booking)
       UserMailer.with(user: current_user, event: @booking.event).booking_request_email.deliver_later
-      render 'success'
+      # render 'success'
     else
       @booking = Booking.new
       flash[:alert] = "Error processing booking. Try again later"
@@ -50,10 +51,19 @@ class BookingsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  def update
+    @booking = Booking.find(params[:id])
+    if @booking.update(booking_params)
+      redirect_to success_bookings_path
+    else
+      render 'edit'
+    end
+  end
+
   private
 
   def booking_params
-    params.require(:booking).permit(:event_id, :user_id)
+    params.require(:booking).permit(:event_id, :noguest)
   end
 
 end
