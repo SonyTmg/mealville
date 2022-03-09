@@ -9,4 +9,10 @@ class UsersController < ApplicationController
       redirect_back fallback_location: root_path
     end
   end
+
+  def show
+    @user     = current_user
+    @ratings  = @user.average_rating
+    @reviews  = @user.all_reviews
+  end
 end

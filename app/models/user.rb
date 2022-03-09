@@ -6,7 +6,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:google_oauth2]
   has_many :events, dependent: :destroy
-  has_many :bookings
+  has_many :bookings, through: :events
 
   def self.from_google(email:, full_name:, uid:, avatar_url:)
     where(uid: uid).first_or_initialize do |user|
@@ -19,9 +19,38 @@ class User < ApplicationRecord
     end
   end
 
+  def average_rating
+    reviews = []
+    events  = self.events
+    sum     = 0
+
+    events.each do |event|
+      reviews += event.reviews
+    end
+
+    reviews.each do |review|
+      sum += review.rating
+    end
+
+    sum / reviews.count.to_f
+  end
+
+  def all_reviews
+    reviews = []
+    events  = self.events
+
+    events.each do |event|
+      reviews += event.reviews
+    end
+
+    reviews
+  end
+
   def name
     full_name || "#{first_name} #{last_name}"
   end
+
+
 
   protected
 
