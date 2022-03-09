@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     get '/dashboard', to: 'events#index'
 
     resources :events do
-      resources :bookings, only: %i[] do
+      resources :bookings, only: %i[show] do
         resources :reviews, only: %i[index show]
 
         patch '/confirm', to: 'bookings#confirm'
@@ -21,12 +21,15 @@ Rails.application.routes.draw do
   end
 
   resources :events do
-    resources :bookings, only: %i[create new] do
+    resources :bookings, only: %i[create new update] do
       patch '/cancel', to: 'bookings#cancel'
     end
   end
 
   resources :bookings, only: %i[destroy show index] do
+    collection do
+      get :success
+    end
     resources :reviews, only: %i[new create index]
   end
 
