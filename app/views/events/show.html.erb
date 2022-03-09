@@ -51,7 +51,23 @@
             </p>
           </div>
           <div class="col-12">
+            <p>
+              <%= @event.capacity %>
+            </p>
+          </div>
+          <div class="col-12">
+            <p>
+              <%= @event.start_time %>
+            </p>
+          </div>
+          <div class="col-12">
+            <p>
+              <%= @event.capacity %>
+            </p>
+          </div>
+          <div class="col-12">
             <%= simple_form_for [@event, @booking] do |f| %>
+              <%= f.input :capacity %>
               <%= f.association :event, as: :hidden %>
               <%= f.button :submit, class: 'btn-submit' %>
             <% end %>
