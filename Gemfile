@@ -35,7 +35,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem "devise", github: "heartcombo/devise", branch: "main"
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
-gem 'omniauth-rails_csrf_protection', '~> 1.0'
+gem 'omniauth-rails_csrf_protection' # , '~> 1.0'
 
 gem 'autoprefixer-rails', '10.2.5'
 gem 'font-awesome-sass'
@@ -73,3 +73,8 @@ gem 'cloudinary', '~> 1.16.0'
 
 #Geocoding
 gem 'geocoder'
+
+#stripe
+gem 'stripe'
+gem 'omniauth-stripe-connect', '~> 2.10.1'
+gem 'money-rails'
