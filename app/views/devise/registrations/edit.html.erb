@@ -38,4 +38,14 @@
       <%= link_to "Back", :back %>
     </div>
   </div>
+  <div class="w-full text-left lg:pl-16 lg:w-1/2">
+  <div class="p-6 mt-10 text-gray-900 bg-white rounded shadow-lg">
+    <% unless resource.can_receive_payments? %>
+      <h4 class="mb-6 text-xl font-semibold leading-none text-gray-900">You wont be able to sell items until you register with Stripe!</h4>
+      <%= stripe_button %>
+    <% else %>
+      <h4 class="mb-6 text-xl font-semibold leading-none text-gray-900">Successfully connected to Stripe  ✅</h4>
+    <% end %>
+  </div>
+</div>
 </div>
