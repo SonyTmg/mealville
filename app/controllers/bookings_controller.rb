@@ -24,11 +24,11 @@ class BookingsController < ApplicationController
   def create
     # this appears as a section of an event's show page
     @booking = Booking.new(booking_params)
-    @event = Event.find(params[:event_id])
+    # @event = Event.find(params[:event_id])
     @booking.user_id = current_user.id
     if @booking.valid?
       @booking.save
-      redirect_to booking_path(@event, @booking)
+      redirect_to booking_path(@booking)
       UserMailer.with(user: current_user, event: @booking.event).booking_request_email.deliver_later
       # render 'success'
     else
@@ -63,7 +63,7 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:event_id, :user_id)
+    params.require(:booking).permit(:event_id, :noguest)
   end
 
 end
