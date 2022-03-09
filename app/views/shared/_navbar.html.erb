@@ -8,7 +8,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
       <% if (params[:controller] == "events" && (params[:action] == "index" || params[:action] == "show")) %>
-        <div class="d-flex justify-content-center w-50">
+        <div class="d-flex justify-content-center w-75">
           <%= render 'shared/search_form' %>
         </div>
       <% end %>
