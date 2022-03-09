@@ -16,8 +16,6 @@
 
 
         <%= simple_form_for [@booking.event, @booking], method: :post, url: event_confirm_booking_path do |f| %>
-          <%= f.input :start_date, as: :hidden, html5: true %>
-          <%= f.input :end_date, as: :hidden, html5: true %>
           <%= f.association :user, as: :hidden, input_html: { value: current_user.id } %>
           <%= f.association :event, as: :hidden %>
           <%= f.button :submit, class: 'btn-submit' %>
@@ -47,12 +45,18 @@
                   </div>
                   <div class="card-footer">
                     <p>
+                      Date: <%= @booking.date %>
+                    </p>
+                    <p>
                       From: <%= @booking.start_date %>
                       <br>
                       To: <%= @booking.end_date %>
                     </p>
                     <p>
                       <%= @booking.event.description %>
+                    </p>
+                    <p>
+                      Number of Guests: <% @booking.event.description %>
                     </p>
                     <p>
                       Booked by: <%= @booking.user.email %>
