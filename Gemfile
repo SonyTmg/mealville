@@ -73,3 +73,6 @@ gem 'cloudinary', '~> 1.16.0'
 
 #Geocoding
 gem 'geocoder'
+
+#calender
+gem 'icalendar', '~> 2.7', '>= 2.7.1'
