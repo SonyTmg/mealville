@@ -15,7 +15,7 @@
         <input type="number" class="form-control" id="inputNumber" placeholder="ccv">
 
 
-        <%= simple_form_for [@booking.event, @booking], method: :post, url: event_confirm_booking_path do |f| %>
+        <%= simple_form_for [@booking.event, @booking] do |f| %>
           <%= f.association :user, as: :hidden, input_html: { value: current_user.id } %>
           <%= f.association :event, as: :hidden %>
           <%= f.button :submit, class: 'btn-submit' %>
@@ -45,18 +45,18 @@
                   </div>
                   <div class="card-footer">
                     <p>
-                      Date: <%= @booking.date %>
+                      Date: <%= @booking.event.date %>
                     </p>
                     <p>
-                      From: <%= @booking.start_date %>
+                      From: <%= @booking.event.start_time %>
                       <br>
-                      To: <%= @booking.end_date %>
+                      To: <%= @booking.event.end_time %>
                     </p>
                     <p>
                       <%= @booking.event.description %>
                     </p>
                     <p>
-                      Number of Guests: <% @booking.event.description %>
+                      Number of Guests: <%= @booking.noguest %>
                     </p>
                     <p>
                       Booked by: <%= @booking.user.email %>
