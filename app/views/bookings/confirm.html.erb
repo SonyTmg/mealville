@@ -1,0 +1,88 @@
+<%#= Booking confirmation page: contains booking deatils that wanna be confirmed %>
+<div class="bg-2 wrap">
+  <br>
+  <br>
+  <div class="container mt-5 pt-5 text-white">
+    <h1 class="h2 text-center">Booking Details</h1>
+      <p></p>
+    <div class="row">
+      <div class="col-6">
+        <label for="card details" class="col-sm-2 col-form-label"></label>
+        <input type="number" class="form-control" id="inputNumber" placeholder="card number">
+        <label for="card details" class="col-sm-2 col-form-label"></label>
+        <input type="number" class="form-control" id="inputNumber" placeholder="expiry">
+        <label for="card details" class="col-sm-2 col-form-label"></label>
+        <input type="number" class="form-control" id="inputNumber" placeholder="ccv">
+
+
+        <%= simple_form_for [@booking.event, @booking] do |f| %>
+          <%= f.association :user, as: :hidden, input_html: { value: current_user.id } %>
+          <%= f.association :event, as: :hidden %>
+          <%= f.submit "Confirm Booking", class: 'btn-submit' %>
+        <% end %>
+      </div>
+      <div class="col-6">
+        <div class="row">
+          <div class="col-12">
+            <div class="row">
+
+              <div class="card w-100 text-black confirm-card">
+                <img src="<%= url_for(@booking.event.photos[0]) %>" alt="" class="img-fluid img-object-fit-cover card-img-top">
+                <div class="card-body py-2 px-3">
+                  <div class="card-title">
+                    <h1><%= @booking.event.name %></h1>
+                  </div>
+                  <div class="card-divider">
+                    <div class="card-content w-100 d-flex justify-content-between">
+                      <div>
+                        <p> $<%= @booking.event.price %> /day</p>
+                        <p> <i class="fa fa-map-marked-alt" aria-hidden="true"></i> <%= @booking. event.location %> </p>
+                      </div>
+                      <div>
+                        <p><%= '⭐️' * [3, 4, 5].sample  %></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-footer">
+                    <p>
+                      Date: <%= @booking.event.date %>
+                    </p>
+                    <p>
+                      From: <%= @booking.event.start_time %>
+                      <br>
+                      To: <%= @booking.event.end_time %>
+                    </p>
+                    <p>
+                      <%= @booking.event.description %>
+                    </p>
+                    <p>
+                      Number of Guests: <%= @booking.noguest %>
+                    </p>
+                    <p>
+                      Booked by: <%= @booking.user.email %>
+                    </p>
+                    <p>
+                      Total Price: <%= @booking.event.price %>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-5">
+      <div class="col-12">
+        <h4>Terms and conditions</h4>
+        <small class="text-white">Reservations for stays and Sail vibe Experiences made on or before 14 March 2020, with a check-in date within the next 45 days from today, are covered by the policy and may be cancelled before check-in. Guests who cancel will have cancellation and refund options, and Hosts can cancel without charge or impact to their Superhost status. SailVibe will either refund, or issue travel credit that includes all service fees for covered cancellations. In order to cancel under the policy, you will be required to attest to the facts of and/or provide supporting documentation for your extenuating circumstance.
+
+  The Host’s cancellation policy will apply as usual to reservations made after 14 March 2020, except where a guest or Host is sick with COVID-19.
+
+  Cancellations will be handled according to the extenuating circumstances coverage in effect at the time of submission, and reservations that were already cancelled will not be reconsidered.
+
+  If a reservation has already begun (the check-in has passed) this extenuating circumstance does not apply.</small>
+      </div>
+    </div>
+  </div>
+</div>

@@ -27,8 +27,9 @@
           </div>
         </div>
         <% if !booking.cancelled? %>
-          <div class="card-footer">
+          <div class="card-footer d-flex justify-content-between">
             <p><%= link_to 'Cancel', event_booking_cancel_path(booking_id: booking.id, event_id: booking.event.id), method: :patch, data: {:confirm => 'Are you sure?'}, class: "text-danger" %></p>
+            <p><%= link_to 'View Booking', booking_path(id: booking.id) %></p>
           </div>
         <% end %>
       </div>

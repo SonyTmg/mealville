@@ -10,15 +10,7 @@ class BookingsController < ApplicationController
   end
 
   def confirm
-    @booking = Booking.new(booking_params)
-    @booking.user_id = current_user.id
-    if @booking.valid?
-      @booking.save
-      render 'success'
-    else
-      @booking = Booking.new
-      render 'new'
-    end
+    @booking = Booking.find(params[:booking_id])
   end
 
   def create
@@ -28,7 +20,7 @@ class BookingsController < ApplicationController
     @booking.user_id = current_user.id
     if @booking.valid?
       @booking.save
-      redirect_to booking_path(@booking)
+      redirect_to booking_confirm_path(booking_id: @booking.id)
       UserMailer.with(user: current_user, event: @booking.event).booking_request_email.deliver_later
       # render 'success'
     else
@@ -60,8 +52,17 @@ class BookingsController < ApplicationController
     end
   end
 
-  private
+  def message_host
+    @booking = Booking.find(params[:booking_id])
+    UserMailer.with(user: @booking.event.user, booking: @booking,
+                    sender: @booking.user,
+                    body: params[:message][:body],
+                    subject: params[:message][:subject]).booking_message_host_email.deliver_later
+    flash[:success] = "Your message has been sent to the host."
+    redirect_back(fallback_location: root_path)
+  end
 
+  private
   def booking_params
     params.require(:booking).permit(:event_id, :noguest)
   end
