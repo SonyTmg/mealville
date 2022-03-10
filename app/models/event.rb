@@ -15,6 +15,16 @@ class Event < ApplicationRecord
                     tsearch: { prefix: true }
                   }
 
+
+  def total_guests
+    bookings.sum{ |booking| booking.noguest }
+  end
+
+  def remaining_capacity
+    capacity - total_guests
+    #capacity - total_guest
+  end
+
   def formatted_date
     date.strftime("%a %d, %B %Y")
   end

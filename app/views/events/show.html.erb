@@ -70,13 +70,13 @@
               Max guest: <%= @event.capacity %>
             </p>
           </div>
-          <div class="col-12">
-            <%= simple_form_for [@event, @booking] do |f| %>
-              <%= f.input :noguest %>
-              <%= f.association :event, as: :hidden %>
-              <%= f.button :submit, class: 'btn-submit' %>
-            <% end %>
-          </div>
+            <div class="col-12">
+              <%= simple_form_for [@event, @booking] do |f| %>
+                <%= f.input :noguest%>
+                <%= f.association :event, as: :hidden %>
+                <%= f.button :submit, class: 'btn-ssubmit' %>
+              <% end %>
+            </div>
           <br>
           <br>
           <hr>
