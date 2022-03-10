@@ -50,7 +50,23 @@ class User < ApplicationRecord
     full_name || "#{first_name} #{last_name}"
   end
 
+  # return bookings for past hosted events if user is host
+  def confirmed_bookings_for_hosted_events
+    return unless host
+    return if past_hosted_events.nil?
 
+    past_hosted_events.map do |event|
+      event.bookings.select do |booking|
+        booking.confirmed?
+      end
+    end.flatten
+  end
+
+  def past_hosted_events
+    return unless host
+
+    events.includes(:bookings).where('date < ?', DateTime.now)
+  end
 
   protected
 

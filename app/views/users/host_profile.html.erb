@@ -1,0 +1,33 @@
+host profile for <%= @user.name %>
+<br>
+ratings: <%= @ratings %>
+<br>
+reviews:
+<br>
+<ul>
+  <% @reviews.each do |review| %>
+    <li>
+      <p>
+        User: <%= review.user.name %>
+        <br>
+        Rating: <%= review.ratings %>
+        <br>
+        Comment: <%= review.comment %>
+      </p>
+    </li>
+  <% end %>
+</ul>
+
+<hr>
+<ul>
+  <% @user.events.each do |event| %>
+    <li>
+      <%= event.name %>
+    </li>
+  <% end %>
+</ul>
+
+<% if current_user && @valid_user_ids.include?(current_user.id) %>
+  Review Form
+
+<% end %>
