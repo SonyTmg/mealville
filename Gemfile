@@ -73,3 +73,8 @@ gem 'cloudinary', '~> 1.16.0'
 
 #Geocoding
 gem 'geocoder'
+# stripe with pay gem
+gem 'pay', '~> 3.0'
+
+# To use Stripe, also include:
+gem 'stripe', '>= 2.8', '< 6.0'

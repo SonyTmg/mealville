@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  pay_customer
   attr_accessor :skip_password_validation
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
