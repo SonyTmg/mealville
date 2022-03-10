@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hello, <%= @user.full_name || @user.first_name %></h1>
+    <p>You have a received a message from <%= @sender.name %>, <%= @sender.email %>, regarding <%= @booking.event.name %>:</p>
+    <blockquote>
+      <p>Subject: <%= @subject %></p>
+      <p><%= @body %></p>
+    </blockquote>
+    <p>If you wish to reply, please email the user at <%= link_to @sender.email, "mailto:#{@sender.email}" %></p>
+    <p>MealVille Team</p>
+  </body>
+</html>

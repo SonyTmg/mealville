@@ -51,4 +51,13 @@ class UserMailer < ApplicationMailer
     @booking = params[:booking]
     mail(to: @user.email, subject: "A booking to your event has been cancelled.")
   end
+
+  def booking_message_host_email
+    @user = params[:user]
+    @sender = params[:sender]
+    @booking = params[:booking]
+    @body = params[:body]
+    @subject = params[:subject]
+    mail(to: @user.email, subject: "You've received a message from a user.")
+  end
 end
