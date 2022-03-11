@@ -47,7 +47,6 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
     @booking.update(booking_params)
     redirect_to success_bookings_path
-    end
   end
 
   def message_host

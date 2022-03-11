@@ -107,6 +107,8 @@ GEM
       railties (>= 3.2)
     erubi (1.10.0)
     execjs (2.7.0)
+    faker (2.20.0)
+      i18n (>= 1.8.11, < 2)
     faraday (2.2.0)
       faraday-net_http (~> 2.0)
       ruby2_keywords (>= 0.0.4)
@@ -320,6 +322,7 @@ DEPENDENCIES
   cloudinary (~> 1.16.0)
   devise!
   dotenv-rails
+  faker
   font-awesome-sass
   geocoder
   icalendar (~> 2.7, >= 2.7.1)
@@ -350,4 +353,4 @@ RUBY VERSION
    ruby 3.0.3p157
 
 BUNDLED WITH
-   2.3.5
+   2.3.8
