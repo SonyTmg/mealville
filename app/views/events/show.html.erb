@@ -85,28 +85,13 @@
           <br>
           <br>
           <hr>
-          <%# <div class="col-12 my-3">
-            <h4 class="text-center">Reviews</h4>
-            <div class="row gap-1 d-flex justify-content-center">
-              <% @event.reviews.each do |review| %>
-                <%# <div class="col-5 border border-1 p-2 bg-dark bg-opacity-50 rounded-3">
-                  <p class='m-0'> <strong><%=review.user.first_name %></strong></p>
-                  <%# <p class='m-0'> <%= "⭐️" * review.rating %></p>
-                  <%# <p class='m-0'> <%= review.comment %></p>
-                <%# </div> %>
-              <%# <% end %>
-              <%# <% if current_user %>
-                <%# <div class="col-12 my-3">
-                  <%= simple_form_for [@event, @review] do |f| %>
-                    <%# <%= f.input :rating %>
-                    <%# <%= f.input :comment, as: :text %>
-                    <%# <%= f.association :event, as: :hidden %>
-                    <%# <%= f.submit 'Add review', class: 'btn-submit'%>
-                  <%# <% end %>
-                <%# </div> %>
-              <%# <% end %>
-            <%# </div> %>
-          <%# </div> %>
+          <div class="row">
+            <div class="col-12">
+             Hosted by: <%= @event.user.name %>
+              <%= @event.user.average_rating %>
+              <%= link_to 'See more', profile_path(id: @event.user_id)%>
+            </div>
+          </div>
         </div>
       </div>
     </div>

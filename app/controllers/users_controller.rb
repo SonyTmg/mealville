@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_action :authenticate_user!, only: %i[host_profile]
   def become_host
     current_user.host = true
     if current_user.save
@@ -14,5 +15,14 @@ class UsersController < ApplicationController
     @user     = current_user
     @ratings  = @user.average_rating
     @reviews  = @user.all_reviews
+  end
+
+  def host_profile
+    @user     = User.find(params[:id])
+    @ratings  = @user.average_rating
+    @reviews  = @user.reviews
+    @new_review = Review.new()
+
+    @valid_user_ids = @user.confirmed_bookings_for_hosted_events.map { |booking| booking.user_id }
   end
 end

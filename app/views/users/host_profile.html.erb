@@ -1,0 +1,40 @@
+host profile for <%= @user.name %>
+<br>
+ratings: <%= @ratings %>
+<br>
+<h3>Reviews</h3>
+<br>
+<ul>
+  <% @reviews.each do |review| %>
+    <li>
+      <p>
+        By User: <%= review.by_user.name %>
+        <br>
+        Rating: <%= review.rating %>
+        <br>
+        Comment: <%= review.comment %>
+      </p>
+    </li>
+  <% end %>
+</ul>
+
+<hr>
+<h3>Events</h3>
+<ol>
+  <% @user.events.each do |event| %>
+    <li>
+      Event name: <%= event.name %>
+    </li>
+  <% end %>
+</ol>
+
+<% if current_user && @valid_user_ids.include?(current_user.id) %>
+  <h3>Leave a review</h3>
+  <%= simple_form_for(@new_review, method: :post, url: reviews_path) do |f| %>
+    <%= f.input :rating %>
+    <%= f.input :comment %>
+    <%= f.input :for_user_id,  as: :hidden, input_html: { value: @user.id } %>
+    <%= f.input :by_user_id,  as: :hidden, input_html: { value: current_user.id } %>
+    <%= f.submit 'Add Review', class: 'btn btn-success' %>
+  <% end %>
+<% end %>
