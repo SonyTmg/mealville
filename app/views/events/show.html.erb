@@ -10,14 +10,14 @@
       <div class="col-12 col-lg-8">
         <div class="row">
           <div class="col-12 col-lg-9">
-            <img src="<%= url_for(@event.photos[0]) %>" alt="" class="img-fluid img-object-fit-cover">
-            <%# # cl_image_tag(@event.photos[0].key, crop: :fill,  %>
+            <%# <img src="<%= url_for(@event.photos[0]) " alt="" class="img-fluid img-object-fit-cover"> %> %>
+            <%= cl_image_tag(@event.photos[0].key, crop: :fill) %>
             <%# class: "img-fluid img-object-fit-cover") %>
           </div>
           <div class="col-12 col-lg-3 gap-2 d-flex flex-column">
-            <img src="<%= url_for(@event.photos[1]) %>" alt="" class="img-fluid">
-            <img src="<%= url_for(@event.photos[2]) %>" alt="" class="img-fluid">
-            <img src="<%= url_for(@event.photos[3]) %>" alt="" class="img-fluid">
+            <%= cl_image_tag(@event.photos[1].key, crop: :fill) %>
+            <%= cl_image_tag(@event.photos[2].key, crop: :fill) %>
+            <%= cl_image_tag(@event.photos[3].key, crop: :fill) %>
           </div>
         </div>
         <div style="width: 100%; height: 600px;"
