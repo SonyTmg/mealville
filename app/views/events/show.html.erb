@@ -70,6 +70,11 @@
               Max guest: <%= @event.capacity %>
             </p>
           </div>
+          <div class="col-12">
+            <p>
+            Available number of seats: <%= @event.remaining_capacity %>
+            </p>
+          </div>
             <div class="col-12">
               <%= simple_form_for [@event, @booking] do |f| %>
                 <%= f.input :noguest%>
