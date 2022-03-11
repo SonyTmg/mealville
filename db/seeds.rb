@@ -75,9 +75,10 @@ User.all.each do |user|
 
     puts "Event created - #{event.name}"
     puts "Adding photos to event..."
-    images.each do |image_url|
-      file = URI.open(image_url)
-      event.photos.attach(io: file, filename: image_url, content_type: 'image/png')
+    images.each do |_image_url|
+      random_image = images.sample
+      file = URI.open(random_image)
+      event.photos.attach(io: file, filename: random_image, content_type: 'image/png')
     end
     puts "Finished adding photos to event"
   end
