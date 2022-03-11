@@ -20,7 +20,8 @@ class UsersController < ApplicationController
   def host_profile
     @user     = User.find(params[:id])
     @ratings  = @user.average_rating
-    @reviews  = @user.all_reviews
+    @reviews  = @user.reviews
+    @new_review = Review.new()
 
     @valid_user_ids = @user.confirmed_bookings_for_hosted_events.map { |booking| booking.user_id }
   end
