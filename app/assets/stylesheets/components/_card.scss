@@ -1,0 +1,48 @@
+.card {
+  /* Add shadows to create the "card" effect */
+  height: auto;
+  width: 300px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 10px;
+  box-shadow: 2px 2px 8px #222222d4;
+  overflow: hidden;
+
+  p {
+    margin-bottom: 6px;
+  }
+}
+
+.card img{
+  height:263px;
+  width:324px;
+}
+
+.confirm-card {
+  padding: 0;
+}
+
+.confirm-card img {
+  width: 100%;
+  height: auto;
+}
+
+.card-title {
+  color: #009FA9;
+
+  h1 {
+    font-size: 22px;
+    font-weight: bold;
+  }
+}
+
+.card-divider {
+  display: flex;
+  gap: 30px;
+}
+
+.cards {
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 20px;
+}
