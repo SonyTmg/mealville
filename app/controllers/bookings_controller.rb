@@ -16,17 +16,17 @@ class BookingsController < ApplicationController
   def create
     # this appears as a section of an event's show page
     @booking = Booking.new(booking_params)
+    @event = Event.find(params[:event_id])
+    @booking.event = @event
     # @event = Event.find(params[:event_id])
     @booking.user_id = current_user.id
-    if @booking.valid?
-      @booking.save
+    if @booking.save
       redirect_to booking_confirm_path(booking_id: @booking.id)
       UserMailer.with(user: current_user, event: @booking.event).booking_request_email.deliver_later
       # render 'success'
     else
-      @booking = Booking.new
       flash[:alert] = "Error processing booking. Try again later"
-      redirect_back(fallback_location: root_path)
+      render 'events/show'
     end
   end
 
@@ -45,11 +45,8 @@ class BookingsController < ApplicationController
 
   def update
     @booking = Booking.find(params[:id])
-    if @booking.update(booking_params)
-      redirect_to success_bookings_path
-    else
-      render 'edit'
-    end
+    @booking.update(booking_params)
+    redirect_to success_bookings_path
   end
 
   def message_host

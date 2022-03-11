@@ -69,7 +69,6 @@ ActiveRecord::Schema.define(version: 2022_03_11_002733) do
     t.float "latitude"
     t.float "longitude"
     t.string "cuisine"
-    t.integer "total_guest"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
