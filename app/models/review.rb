@@ -8,6 +8,6 @@ class Review < ApplicationRecord
   validates :rating, inclusion: 0..5
   validates :rating, numericality: { only_integer: true }
 
-  # scope :reviews_for, ->(user) { where("for_user = ?", user) }
-  # scope :reviews_by,  ->(user) { where("by_user = ?", user) }
+  scope :reviews_for, ->(user) { where("for_user = ?", user) }
+  scope :reviews_by,  ->(user) { where("by_user = ?", user) }
 end
