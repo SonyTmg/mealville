@@ -69,13 +69,15 @@
             <%# Available number of seats: <%= @event.remaining_capacity %>
             </p>
           </div>
+          <% unless @event.user_id == current_user&.id %>
             <div class="col-12">
               <%= simple_form_for [@event, @booking] do |f| %>
                 <%= f.input :noguest%>
                 <%= f.association :event, as: :hidden %>
-                <%= f.button :submit, class: 'btn-ssubmit' %>
+                <%= f.button :submit, class: 'btn btn-primary' %>
               <% end %>
             </div>
+          <% end %>
           <br>
           <br>
           <hr>
