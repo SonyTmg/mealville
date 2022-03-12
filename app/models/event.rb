@@ -28,6 +28,8 @@ class Event < ApplicationRecord
                     tsearch: { prefix: true }
                   }
 
+  scope :upcoming_events, -> { where('date > ?', Date.today) }
+
   # def total_guests
   #   bookings.sum{ |booking| booking.noguest || 0 }
   # end

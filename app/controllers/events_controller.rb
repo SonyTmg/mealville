@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   before_action :set_event, only: %i[show]
 
   def index
-    @events = Event.all
+    @events = Event.upcoming_events
     @markers = @events.geocoded.map do |event|
       {
         lat: event.latitude,
@@ -14,7 +14,7 @@ class EventsController < ApplicationController
     if params[:query].present?
       @events = Event.search_by_name_cuisine_description_and_location(params[:query])
     else
-      @events = Event.all
+      @events = Event.upcoming_events
     end
     filter_by_date if params[:dates].present?
   end
