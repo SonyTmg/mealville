@@ -52,17 +52,17 @@
           </div>
           <div class="col-12">
             <p>
-              <%= @event.date %>
+              <%= @event.formatted_date %>
             </p>
           </div>
           <div class="col-12">
             <p>
-              <%= @event.start_time %>
+              <%= @event.formatted_start_time %>
             </p>
           </div>
           <div class="col-12">
             <p>
-              <%= @event.end_time %>
+              <%= @event.formatted_end_time %>
             </p>
           </div>
           <div class="col-12">
@@ -72,7 +72,7 @@
           </div>
           <div class="col-12">
             <p>
-            Available number of seats: <%= @event.remaining_capacity %>
+            <%# Available number of seats: <%= @event.remaining_capacity %>
             </p>
           </div>
             <div class="col-12">

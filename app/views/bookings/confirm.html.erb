@@ -45,12 +45,12 @@
                   </div>
                   <div class="card-footer">
                     <p>
-                      Date: <%= @booking.event.date %>
+                      Date: <%= @booking.event.formatted_date %>
                     </p>
                     <p>
-                      From: <%= @booking.event.start_time %>
+                      From: <%= @booking.event.formatted_start_time %>
                       <br>
-                      To: <%= @booking.event.end_time %>
+                      To: <%= @booking.event.formatted_end_time %>
                     </p>
                     <p>
                       <%= @booking.event.description %>
