@@ -25,7 +25,8 @@ class BookingsController < ApplicationController
       UserMailer.with(user: @booking.event.user, event: @booking.event).booking_request_email.deliver_later
       # render 'success'
     else
-      flash[:alert] = "Error processing booking. Try again later"
+      flash[:notice] = "Error processing booking. Try again later."
+      flash[:alert] = @booking.errors.full_messages
       render 'events/show'
     end
   end
