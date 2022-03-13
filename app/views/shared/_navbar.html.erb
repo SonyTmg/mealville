@@ -19,7 +19,7 @@
         <% if user_signed_in? %>
           <% if !current_user.host %>
             <li class="nav-item">
-              <%= link_to "Become a host", become_host_path, method: :patch, class: 'btn btn-info rounded rounded-4 text-white mx-3 fw-bold' %>
+              <%= button_to "Become a host", become_host_path, method: :patch, class: 'btn btn-info rounded rounded-4 text-white mx-3 fw-bold' %>
             </li>
           <% end %>
           <li class="nav-item dropdown">
