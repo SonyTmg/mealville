@@ -1,42 +1,39 @@
 <div class="wrap bg-2">
   <div class="container my-5 pt-5">
     <div class="row">
-      <div class="col-12">
-        <h1 class="fw-bold text-white"><%= @event.name %></h1>
-      </div>
-    </div>
-    <div class="row">
       <div class="col-12 col-lg-8">
         <div class="row">
           <div class="col-12 col-lg-9">
-            <%= cl_image_tag(@event.photos[0].key, crop: :fill) %>
+            <%= cl_image_tag(@event.photos[0].key, crop: :fill, class: 'img-fluid') %>
           </div>
           <div class="col-12 col-lg-3 gap-2 d-flex flex-column">
-            <%= @event.photos[1] && cl_image_tag(@event.photos[1].key, crop: :fill) %>
-            <%= @event.photos[2] && cl_image_tag(@event.photos[2].key, crop: :fill) %>
-            <%= @event.photos[3] && cl_image_tag(@event.photos[3].key, crop: :fill) %>
+            <%= @event.photos[1] && cl_image_tag(@event.photos[1].key, crop: :fill, class: 'img-fluid') %>
+            <%= @event.photos[2] && cl_image_tag(@event.photos[2].key, crop: :fill, class: 'img-fluid') %>
+            <%= @event.photos[3] && cl_image_tag(@event.photos[3].key, crop: :fill, class: 'img-fluid') %>
           </div>
         </div>
-        <div style="width: 100%; height: 600px;"
-          data-controller="mapbox"
-          data-mapbox-markers-value="<%= @markers.to_json %>"
-          data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY']%>">
+          <hr>
+        <div class="row">
+          <div class="col-12">
+            Hosted by: <%= @event.user.name %>
+            <%= @event.user.average_rating %>
+            <%= link_to 'See more', profile_path(id: @event.user_id)%>
+          </div>
         </div>
       </div>
-      <div class="bg-dark bg-opacity-25 border border-1 col-12 col-lg-4 p-4 rounded-3 text-white">
+      <div class="col-12 col-lg-4 px-4 rounded-3 text-white">
         <div class="row flex-column">
           <div class="col-12">
             <div class="row">
               <div class="col-12">
-                <p class="h2 text-center">
-                  $<%= @event.price %>AUD
-                </p>
+                <h1 class="fw-bold"><%= @event.name %></h1>
+                <h3>$ <%= @event.price %> AUD</h3>
               </div>
             </div>
           </div>
           <div class="col-12">
             <p>
-              <%= @event.location %>
+              <i class="fa fa-map-marker-alt"></i> <%= @event.location %>
             </p>
           </div>
           <div class="col-12">
@@ -51,17 +48,12 @@
           </div>
           <div class="col-12">
             <p>
-              <%= @event.formatted_start_time %>
+              <%= @event.formatted_start_time %> to <%= @event.formatted_end_time %>
             </p>
           </div>
           <div class="col-12">
             <p>
-              <%= @event.formatted_end_time %>
-            </p>
-          </div>
-          <div class="col-12">
-            <p>
-              Max guest: <%= @event.capacity %>
+              Capacity: <%= @event.capacity %>
             </p>
           </div>
           <div class="col-12">
@@ -70,23 +62,19 @@
             </p>
           </div>
           <% unless @event.user_id == current_user&.id %>
-            <div class="col-12">
+            <div class="col-12 mb-5">
               <%= simple_form_for [@event, @booking] do |f| %>
-                <%= f.input :noguest%>
+                <%= f.input :noguest, label: 'No. of guests' %>
                 <%= f.association :event, as: :hidden %>
-                <%= f.button :submit, class: 'btn btn-primary' %>
+                <%= f.button :submit, class: 'btn btn-lg btn-info' %>
               <% end %>
             </div>
           <% end %>
-          <br>
-          <br>
           <hr>
-          <div class="row">
-            <div class="col-12">
-             Hosted by: <%= @event.user.name %>
-              <%= @event.user.average_rating %>
-              <%= link_to 'See more', profile_path(id: @event.user_id)%>
-            </div>
+          <div style="width: 100%; height: 400px;"
+            data-controller="mapbox"
+            data-mapbox-markers-value="<%= @markers.to_json %>"
+            data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY']%>">
           </div>
         </div>
       </div>

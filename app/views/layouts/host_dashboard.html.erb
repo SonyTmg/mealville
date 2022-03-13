@@ -18,21 +18,21 @@
     <div class="container-fluid p-0">
       <div class="row">
         <div class="col-12 col-md-2">
-          <div class="d-flex flex-column flex-shrink-0 p-3 bg-light h-100">
-            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none link-dark">
+          <div class="d-flex flex-column flex-shrink-0 p-3 h-100">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none">
               <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
               <span class="fs-4">Host Dashboard</span>
             </a>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
               <li>
-                <%= link_to host_events_path, class: "nav-link link-dark" do %>
+                <%= link_to host_events_path, class: "nav-link" do %>
                   <i class="fa fa-white fa-calendar"></i>
                   Events
                 <% end %>
               </li>
               <li>
-                <a href="#" class="nav-link link-dark">
+                <a href="#" class="nav-link">
                   <i class="fa fa-white fa-envelope"></i>
                   TODO: Reviews
                 </a>
@@ -45,5 +45,6 @@
         </div>
       </div>
     </div>
+    <%= render 'shared/footer' %>
   </body>
 </html>

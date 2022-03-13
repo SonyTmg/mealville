@@ -1,14 +1,14 @@
-<div class="bg-white navbar navbar-expand-sm navbar-lewagon navbar-light w-100">
+<div class="navbar navbar-expand-sm navbar-lewagon navbar-light w-100">
   <div class="container-fluid">
     <%= link_to root_path, class: "navbar-brand" do %>
-      <%= image_tag "logo.jpg" %>
+      <%= image_tag "mealville.svg" %>
     <% end %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
       <% if (params[:controller] == "events" && (params[:action] == "index" || params[:action] == "show")) %>
-        <div class="d-flex justify-content-center w-75">
+        <div class="d-flex justify-content-center w-50">
           <%= render 'shared/search_form' %>
         </div>
       <% end %>
@@ -21,25 +21,25 @@
             <li class="nav-item">
               <%= link_to "Become a host", become_host_path, method: :patch, class: 'btn btn-info rounded rounded-4 text-white mx-3 fw-bold' %>
             </li>
-          <% else %>
-            <li class="nav-item">
-              <%= link_to "Create an event", new_host_event_path, class: 'btn btn-info rounded rounded-4 text-white mx-3 fw-bold' %>
-            </li>
           <% end %>
           <li class="nav-item dropdown">
             <%= image_tag (current_user.avatar_url || 'user-icon.png'), class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "User Dashboard", dashboard_path, class: "dropdown-item" %>
+            <div class="dropdown-menu dropdown-menu-dark dropdown-menu-end bg-dark-green" aria-labelledby="navbarDropdown">
+              <%= link_to "User Dashboard", dashboard_path, class: "dropdown-item text-white" %>
               <% if current_user.host %>
                 <hr>
-                <%= link_to "Host Dashboard", host_dashboard_path, class: "dropdown-item" %>
+                <%= link_to "Host Dashboard", host_dashboard_path, class: "dropdown-item text-white" %>
               <% end %>
-              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item text-white" %>
             </div>
           </li>
         <% else %>
           <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+            <%#= link_to "Create an event", new_host_event_path, class: 'btn btn-outline-info rounded rounded-4 text-white mx-3 fw-bold' %>
+            <%= link_to 'Explore', events_path, class:"btn btn-outline-info mx-3"%>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Login", new_user_session_path, class: "nav-link text-white" %>
           </li>
         <% end %>
       </ul>

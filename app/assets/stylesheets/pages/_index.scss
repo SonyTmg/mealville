@@ -1,6 +1,9 @@
 // Import page-specific CSS files here.
 @import "home";
 
+body {
+  background-color: $darker-green;
+}
 
 .wrap {
   overflow: hidden;

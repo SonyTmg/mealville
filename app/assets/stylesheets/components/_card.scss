@@ -2,14 +2,19 @@
   /* Add shadows to create the "card" effect */
   height: auto;
   width: 300px;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
-  border-radius: 10px;
-  box-shadow: 2px 2px 8px #222222d4;
   overflow: hidden;
 
+  .card-img-overlay {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    background: linear-gradient(32deg, #000000ab, transparent);
+    padding: 6px 1rem;
+  }
+
   p {
-    margin-bottom: 6px;
+    margin-bottom: 0;
   }
 }
 
@@ -28,11 +33,12 @@
 }
 
 .card-title {
-  color: #009FA9;
+  color: $gold;
 
   h1 {
     font-size: 22px;
     font-weight: bold;
+    letter-spacing: 2px;
   }
 }
 
