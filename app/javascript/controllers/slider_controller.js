@@ -10,7 +10,7 @@ export default class extends Controller {
       rewind: true,
       speed: 2000,
       autoplay: true,
-      interval: 3000,
+      interval: 2000,
       arrows: false,
       pagination: false,
       pauseOnHover: false,

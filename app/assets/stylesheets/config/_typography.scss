@@ -15,7 +15,8 @@ a {
 }
 
 hr {
-  color: $gold;
+  color: $gold !important;
+  border-color: $gold !important;
 }
 
 .text-gold {

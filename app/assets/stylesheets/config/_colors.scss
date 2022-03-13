@@ -9,6 +9,10 @@ $green: #1EDD88;
 $gray: #0E0000;
 $light-gray: #F4F4F4;
 $gold: #C9AB81;
-$dark-green: #006ba1;
+$dark-green: #0f1d21;
 $darker-green: #0f1d21;
 $bg-dark: #0c1315;
+
+.bg-dark-green {
+  background-color: $dark-green !important;
+}
