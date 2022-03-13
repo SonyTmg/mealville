@@ -8,7 +8,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
       <% if (params[:controller] == "events" && (params[:action] == "index" || params[:action] == "show")) %>
-        <div class="d-flex justify-content-center w-75">
+        <div class="d-flex justify-content-center w-50">
           <%= render 'shared/search_form' %>
         </div>
       <% end %>
@@ -23,7 +23,8 @@
             </li>
           <% else %>
             <li class="nav-item">
-              <%= link_to "Create an event", new_host_event_path, class: 'btn btn-info rounded rounded-4 text-white mx-3 fw-bold' %>
+              <%#= link_to "Create an event", new_host_event_path, class: 'btn btn-outline-info rounded rounded-4 text-white mx-3 fw-bold' %>
+              <%= link_to 'Explore', events_path, class:"btn btn-outline-info mx-3"%>
             </li>
           <% end %>
           <li class="nav-item dropdown">

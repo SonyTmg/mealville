@@ -1,14 +1,12 @@
-<%# <div class="hero-image">
-  <div class="hero-text">
-    <h1>MealVille</h1>
-    <button> <%= link_to 'Browse', events_path, class:"text-decoration-none text-black"%>
-  <%# </div> %>
-<%# </div> %>
-
 <div class="hero" data-controller="slider">
-  <div class="hero-text">
-    <%= image_tag 'mealville.svg', style: "width: 400px;" %>
-    <button> <%= link_to 'Browse', events_path, class:"text-decoration-none text-black"%>
+  <div class="hero-text d-flex flex-column gap-4">
+    <div class="d-flex flex-column gap-2">
+      <%= image_tag 'mealville.svg', style: "width: 400px;" %>
+      <p class="subtitle">Experience the food culture</p>
+    </div>
+    <div class="search-bar">
+      <%= render 'shared/search_form' %>
+    </div>
   </div>
   <div class="splide" data-slider-target="slider">
     <div class="splide__track">
@@ -25,4 +23,5 @@
       </ul>
     </div>
   </div>
+
 </div>
