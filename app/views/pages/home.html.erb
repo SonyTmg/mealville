@@ -5,15 +5,24 @@
   <%# </div> %>
 <%# </div> %>
 
-<div class="hero-image">
-  <div class="container d-flex flex-column h-50 justify-content-center">
-    <div class="row justify-content-center">
-      <div class="hero-text col col-lg-12">
-        <h1>MEALVILLE</h1>
-        <div class="mb-3">
-          <%= render 'shared/search_form' %>
-        </div>
-      </div>
+<div class="hero" data-controller="slider">
+  <div class="hero-text">
+    <%= image_tag 'mealville.svg', style: "width: 400px;" %>
+    <button> <%= link_to 'Browse', events_path, class:"text-decoration-none text-black"%>
+  </div>
+  <div class="splide" data-slider-target="slider">
+    <div class="splide__track">
+      <ul class="splide__list">
+        <li class="splide__slide">
+          <%= image_tag 'slider-1' %>
+        </li>
+        <li class="splide__slide">
+          <%= image_tag 'slider-2' %>
+        </li>
+        <li class="splide__slide">
+          <%= image_tag 'slider-3' %>
+        </li>
+      </ul>
     </div>
   </div>
 </div>
