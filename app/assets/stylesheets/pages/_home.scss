@@ -6,13 +6,13 @@ body, html {
 /* The hero image */
 .hero-image {
 /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
-background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("hero-banner.jpeg");
+background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1)), url("hero-image-1.jpeg");
 
 /* Set a specific height */
 height: 50%;
 
 /* Position and center the image to scale nicely on all screens */
-background-position: center;
+background-position: 50% 50%;
 background-repeat: no-repeat;
 background-size: cover;
 
@@ -20,6 +20,7 @@ background-size: cover;
 height: calc(100vh - 80px);
 width: 100%;
 position: relative;
+margin-top: -80px;
 }
 
 /* Place text in the middle of the image */
@@ -33,7 +34,7 @@ color: white;
 }
 
 .hero-text > h1 {
-  font-family: 'Dancing Script', cursive;
-  color: antiquewhite;
+  font-family: $display-font;
   font-size: 72px;
+  color: $gold;
 }
