@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # These will all fall under a /host route eg:
   # host/dashboard, host/events, host/bookings
   namespace :host do
-    get '/dashboard', to: 'events#index'
+    get '/dashboard', to: 'events#index', as: :dashboard
 
     resources :events do
       resources :bookings, only: %i[] do
@@ -17,12 +17,18 @@ Rails.application.routes.draw do
 
         patch '/confirm', to: 'bookings#confirm'
       end
+      member do
+        get :checkout, as: :checkout
+      end
     end
   end
 
   resources :events do
     resources :bookings, only: %i[create new] do
       patch '/cancel', to: 'bookings#cancel'
+      collection do
+        get :complete_booking
+      end
     end
   end
 
@@ -31,4 +37,5 @@ Rails.application.routes.draw do
   end
 
   resources :reviews, only: %i[show]
+  get "stripe/connect", to: "stripe#connect", as: :stripe_connect
 end
