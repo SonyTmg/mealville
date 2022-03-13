@@ -44,7 +44,12 @@ class BookingsController < ApplicationController
         mode: 'payment',
         # These placeholder URLs will be replaced in a following step.
         success_url: 'https://www.google.com',
-        cancel_url: bookings_url(@booking),
+        cancel_url: 'https://www.youtube.com',
+        payment_intent_data: {
+          transfer_data: {
+            destination: "#{@event.user.stripe_user_id}",
+          }
+        }
       })
 
       redirect_to session.url
