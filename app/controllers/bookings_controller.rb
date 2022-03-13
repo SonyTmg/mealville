@@ -29,6 +29,7 @@ class BookingsController < ApplicationController
     @booking.user_id = current_user.id
     if @booking.valid?
       # redirect to checkout
+      Stripe.api_key = ENV["STRIPE_SECRET_KEY"]
       session = Stripe::Checkout::Session.create({
         line_items: [{
           price_data: {
@@ -36,17 +37,17 @@ class BookingsController < ApplicationController
             product_data: {
               name: @event.name,
             },
-            unit_amount: @event.price,
+            unit_amount: @event.price_cents,
           },
           quantity: 1,
         }],
         mode: 'payment',
         # These placeholder URLs will be replaced in a following step.
-        success_url: complete_booking_event_bookings_path(@event),
-        cancel_url: event_url(@event),
+        success_url: 'https://www.google.com',
+        cancel_url: bookings_url(@booking),
       })
 
-      redirect session.url, 303
+      redirect_to session.url
       # redirect_to event_confirm_booking_path(event_id: params[:event_id])
     else
       render 'events/show'
