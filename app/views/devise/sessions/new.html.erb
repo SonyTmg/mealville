@@ -15,11 +15,11 @@
           </div>
 
           <div class="form-actions">
-            <%= f.button :submit, "Log in", class: 'btn btn-primary' %>
+            <%= f.button :submit, "Log in", class: 'btn btn-outline-primary' %>
           </div>
         <% end %>
         <br>
-        <%= link_to user_google_oauth2_omniauth_authorize_path, class: 'form-control btn btn-outline-secondary', method: :post do %>
+        <%= link_to user_google_oauth2_omniauth_authorize_path, class: 'form-control btn btn-outline-primary text-white', method: :post do %>
           <i class="fab fa-google"></i>
           Sign in with Google
         <% end %>
