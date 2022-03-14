@@ -1,18 +1,12 @@
-h1, h2, h3, h4, h5 {
+h1, h2, h3, h4, h5, h6 {
   font-family: $headers-font;
   font-weight: 300;
-}
-
-h1, h2 {
-  letter-spacing: 4px;
-}
-
-a {
+  color: $gold;
 }
 
 hr {
-  color: grey !important;
-  border-color: grey !important;
+  color: $gold !important;
+  border-color: $gold !important;
 }
 
 .text-gold {

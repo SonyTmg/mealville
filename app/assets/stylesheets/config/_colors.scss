@@ -9,10 +9,14 @@ $green: #1EDD88;
 $gray: #0E0000;
 $light-gray: #F4F4F4;
 $gold: #C9AB81;
-$dark-green: #0f1d21;
-$darker-green: #0f1d21;
+$dark-green: #122e2d;
+$darker-green: #0d191d;
 $bg-dark: #0c1315;
 
 .bg-dark-green {
   background-color: $dark-green !important;
+}
+
+.color-yellow {
+  color: $yellow;
 }

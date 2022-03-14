@@ -13,13 +13,13 @@
 <% else %>
   <%= form_tag events_path, method: :get, class:"input-group row m-0" do %>
     <div class="col-12 col-md-7" style="padding: 0px!important">
-      <%= text_field_tag :query, params[:query], class: "form-control bg-transparent", placeholder: "Filter by an Event name, a Cuisine or a Location" %>
+      <%= text_field_tag :query, params[:query], class: "form-control border-info bg-info bg-transparent", placeholder: "Filter by an Event name, a Cuisine or a Location" %>
     </div>
     <div class="col-12 col-md-3" style="padding: 0px!important">
-      <%= text_field_tag :dates, params[:dates], class: "form-control bg-transparent", placeholder: "Filter by dates", data: {controller: 'flatpickr', flatpickr_target: 'dates'} %>
+      <%= text_field_tag :dates, params[:dates], class: "form-control border-info bg-info bg-transparent", placeholder: "Filter by dates", data: {controller: 'flatpickr', flatpickr_target: 'dates'} %>
     </div>
     <div class="col-12 col-md-2" style="padding: 0px!important">
-      <div class="input-group-append"><%= submit_tag "Search", class:"btn btn-outline-primary w-100" %></div>
+      <div class="input-group-append"><%= submit_tag "Search", class:"btn btn-outline-info w-100" %></div>
     </div>
   <% end %>
 <% end %>

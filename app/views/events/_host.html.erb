@@ -1,0 +1,42 @@
+<div class="d-flex gap-3">
+  <div>
+    <%= image_tag (host.avatar_url || 'user-icon.png'), class: 'rounded-circle', style: 'width:100px;height:100px;' %>
+  </div>
+  <div>
+    <h4>
+      Hosted by <%= host.name %>
+    </h4>
+    <p class="text-muted">
+      Joined <%= host.created_at.strftime("%d %B, %Y") %>
+    </p>
+    <p class="text-muted">
+      <i class="fa fa-star color-yellow"></i>  <%= host.average_rating %> (From <%= host.reviews.count %> reviews)
+    </p>
+  </div>
+  <div>
+    <%= link_to 'See more', profile_path(id: host.id), class: 'btn btn-outline-info btn-sm'%>
+  </div>
+</div>
+
+<hr>
+<h5 class="mb-4">Reviews for the host</h5>
+
+<div class="d-flex flex-wrap gap-3">
+  <% host.reviews.first(5).each do |review| %>
+    <div class="d-flex flex-column">
+      <div class="d-flex gap-3">
+        <%= image_tag (review.by_user.avatar_url || 'user-icon.png'), class: 'rounded-circle', style: 'width:50px;height:50px;' %>
+        <div>
+          <h6>
+            <%= review.by_user.name %>
+          </h6>
+          <p class="text-muted">
+            <%= review.created_at.strftime("%d %B, %Y") %>
+          </p>
+        </div>
+      </div>
+      <p><%= review.comment %></p>
+    </div>
+  <% end %>
+</div>
+<%= link_to 'See all reviews', profile_path(id: host.id), class: 'btn btn-outline-info btn-sm'%>
