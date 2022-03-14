@@ -5,26 +5,19 @@ class BookingsController < ApplicationController
     @my_bookings = @bookings.where(user: current_user)
   end
 
-  def new
-    @booking = Booking.new(event_id: params[:event_id])
+  def show
+    @booking = Booking.find(params[:id])
   end
 
   def confirm
-    @booking = Booking.new(booking_params)
-    @booking.user_id = current_user.id
-    if @booking.valid?
-      @booking.save
-      render 'success'
-    else
-      @booking = Booking.new
-      render 'new'
-    end
+    @booking = Booking.find(params[:booking_id])
   end
 
   def create
     @event = Event.find(params[:event_id])
     # this appears as a section of an event's show page
     @booking = Booking.new(booking_params)
+
     @booking.event = @event
     @booking.user_id = current_user.id
     if @booking.valid?
@@ -57,6 +50,7 @@ class BookingsController < ApplicationController
       redirect_to session.url
       # redirect_to event_confirm_booking_path(event_id: params[:event_id])
     else
+
       render 'events/show'
     end
   end
@@ -81,10 +75,25 @@ class BookingsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
-  private
+  def update
+    @booking = Booking.find(params[:id])
+    @booking.update(booking_params)
+    redirect_to success_bookings_path
+  end
 
+  def message_host
+    @booking = Booking.find(params[:booking_id])
+    UserMailer.with(user: @booking.event.user, booking: @booking,
+                    sender: @booking.user,
+                    body: params[:message][:body],
+                    subject: params[:message][:subject]).booking_message_host_email.deliver_later
+    flash[:success] = "Your message has been sent to the host."
+    redirect_back(fallback_location: root_path)
+  end
+
+  private
   def booking_params
-    params.require(:booking).permit(:event_id, :user_id)
+    params.require(:booking).permit(:event_id, :noguest)
   end
 
 end

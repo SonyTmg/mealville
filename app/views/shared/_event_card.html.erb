@@ -1,0 +1,8 @@
+<div class="card bg-dark text-white">
+  <%= cl_image_tag(event.photos[0].key, crop: :fill, class: 'card-img') %>
+  <div class="card-img-overlay">
+    <h5 class="card-title"><%= event.name %></h5>
+    <p class="card-text"><i class="fa fa-map-marked-alt"></i>  <%= event.location %></p>
+    <p class="card-text">by <strong><%= event.user.name %></strong> (<%= event.user.average_rating %>)</p>
+  </div>
+</div>

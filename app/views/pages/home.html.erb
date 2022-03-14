@@ -1,29 +1,44 @@
-<%# <div class="hero-image">
-  <div class="hero-text">
-    <h1>MealVille</h1>
-    <button> <%= link_to 'Browse', events_path, class:"text-decoration-none text-black"%>
-  <%# </div> %>
-<%# </div> %>
-
-<div class="hero-image">
-  <div class="container d-flex flex-column h-50 justify-content-center">
-    <div class="row justify-content-center">
-      <div class="hero-text col col-lg-12">
-        <h1> <%= link_to 'MealVille', events_path, class:"text-decoration-none text-white" %> </h1>
-        <div class="mb-3">
-          <%= form_tag events_path, method: :get, class:"input-group row m-0" do %>
-          <div class="col-12 col-md-7" style="padding: 0px!important">
-            <%= text_field_tag :query, params[:query], class: "form-control bg-light bg-gradient bg-opacity-10 text-white", placeholder: "Search by an Event name or a Location" %>
-          </div>
-          <div class="col-12 col-md-3" style="padding: 0px!important">
-            <%= text_field_tag :dates, params[:dates], class: "form-control bg-light bg-gradient bg-opacity-10 text-white", placeholder: "Search by a date range", data: {controller: 'flatpickr', flatpickr_target: 'dates'} %>
-          </div>
-          <div class="col-12 col-md-2" style="padding: 0px!important">
-            <div class="input-group-append"><%= submit_tag "Search", class:"btn btn-outline-light w-100" %></div>
-          </div>
-          <% end %>
+<div class="row mb-5">
+  <div class="col-12">
+    <div class="hero" data-controller="slider">
+      <div class="hero-text d-flex flex-column gap-4">
+        <div class="d-flex flex-column gap-2">
+          <%= image_tag 'mealville.svg', style: "width: 400px;" %>
+          <p class="subtitle">Experience the food culture</p>
+        </div>
+        <div class="search-bar">
+          <%= render 'shared/search_form' %>
         </div>
       </div>
+      <div class="splide" data-slider-target="slider">
+        <div class="splide__track">
+          <ul class="splide__list">
+            <li class="splide__slide">
+              <%= image_tag 'https://res.cloudinary.com/sony123/image/upload/v1647153663/slider-1_fpaqv2.png' %>
+            </li>
+            <li class="splide__slide">
+              <%= image_tag 'https://res.cloudinary.com/sony123/image/upload/v1647153655/slider-2_rhzr0z.png' %>
+            </li>
+            <li class="splide__slide">
+              <%= image_tag 'https://res.cloudinary.com/sony123/image/upload/v1647153655/slider-3_ophmkk.png' %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row justify-content-around">
+    <div class="col-12 col-lg-6 gap-3 d-flex flex-column justify-content-center">
+      <h3 class="text-center">ABOUT US</h3>
+      <p class="fs-5">
+        ❝ Stimulus is a JavaScript framework with modest ambitions. Unlike other front-end frameworks, Stimulus is designed to enhance static or server-rendered HTML—the “HTML you already have”—by connecting JavaScript objects to elements on the page using simple annotations. ❞
+      </p>
+    </div>
+    <div class="col-12 col-lg-4">
+      <%= image_tag 'https://res.cloudinary.com/sony123/image/upload/v1647153756/cinnamon_w7c4fq.jpg', class: 'img-fluid' %>
     </div>
   </div>
 </div>

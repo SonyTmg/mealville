@@ -107,6 +107,8 @@ GEM
       railties (>= 3.2)
     erubi (1.10.0)
     execjs (2.7.0)
+    faker (2.20.0)
+      i18n (>= 1.8.11, < 2)
     faraday (2.2.0)
       faraday-net_http (~> 2.0)
       ruby2_keywords (>= 0.0.4)
@@ -126,6 +128,9 @@ GEM
       multi_xml (>= 0.5.2)
     i18n (1.10.0)
       concurrent-ruby (~> 1.0)
+    icalendar (2.7.1)
+      ice_cube (~> 0.16)
+    ice_cube (0.16.4)
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
@@ -330,9 +335,14 @@ DEPENDENCIES
   cloudinary (~> 1.16.0)
   devise!
   dotenv-rails
+  faker
   font-awesome-sass
   geocoder
+
   httparty
+
+  icalendar (~> 2.7, >= 2.7.1)
+
   jbuilder (~> 2.7)
   listen (~> 3.3)
   money-rails

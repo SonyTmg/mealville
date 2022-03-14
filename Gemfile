@@ -5,7 +5,6 @@ ruby '3.0.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.6'
-gem 'dotenv-rails'
 
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
@@ -76,4 +75,11 @@ gem 'stripe'
 
 #Geocoding
 gem 'geocoder'
+
 gem 'money-rails'
+
+
+#calender
+gem 'icalendar', '~> 2.7', '>= 2.7.1'
+gem 'faker'
+

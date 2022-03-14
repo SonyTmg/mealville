@@ -7,6 +7,7 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [:google_oauth2]
   has_many :events, dependent: :destroy
   has_many :bookings
+  has_many :reviews, foreign_key: :for_user
 
   def self.from_google(email:, full_name:, uid:, avatar_url:)
     where(uid: uid).first_or_initialize do |user|
@@ -19,8 +20,35 @@ class User < ApplicationRecord
     end
   end
 
+  def average_rating
+    sum = 0
+
+    reviews.each do |review|
+      sum += review.rating
+    end
+
+    sum / reviews.count.to_f
+  end
+
   def name
     full_name || "#{first_name} #{last_name}"
+  end
+
+  # return bookings for past hosted events if user is host
+  def confirmed_bookings_for_hosted_events
+    return [] unless host
+
+    past_hosted_events.map do |event|
+      event.bookings.select do |booking|
+        booking.confirmed?
+      end
+    end.flatten
+  end
+
+  def past_hosted_events
+    return [] unless host
+
+    events.includes(:bookings).where('date < ?', DateTime.now)
   end
 
   protected

@@ -1,0 +1,17 @@
+.form-control, .form-select {
+  background-color: transparent;
+  border-color: $gold;
+
+  &:focus {
+    background-color: transparent;
+  }
+
+  &::placeholder {
+    color: white;
+    opacity: 0.8;
+  }
+
+  @media screen and (max-width: 420px){
+    height: 60px;
+  }
+}
