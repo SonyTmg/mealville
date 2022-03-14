@@ -1,7 +1,13 @@
 <div class="navbar navbar-expand-sm navbar-lewagon navbar-light w-100">
   <div class="container-fluid">
     <%= link_to root_path, class: "navbar-brand" do %>
-      <%= image_tag "mealville.svg" %>
+      <% if controller_name == 'pages' && action_name == 'home' %>
+        <%= image_tag "mealville.svg" %>
+      <% else %>
+        <div style="color:black;width:120px;">
+          <%= render 'shared/logo' %>
+        </div>
+      <% end %>
     <% end %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

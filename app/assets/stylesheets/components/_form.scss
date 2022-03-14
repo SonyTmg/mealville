@@ -1,13 +1,12 @@
 .form-control, .form-select {
   background-color: transparent;
-  border-color: $gold;
+  border-color: black;
 
   &:focus {
     background-color: transparent;
   }
 
   &::placeholder {
-    color: white;
     opacity: 0.8;
   }
 
