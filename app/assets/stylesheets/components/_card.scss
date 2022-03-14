@@ -1,7 +1,7 @@
 .card {
   /* Add shadows to create the "card" effect */
   height: auto;
-  width: 300px;
+  width: 360px;
   transition: 0.3s;
   overflow: hidden;
 
@@ -20,7 +20,8 @@
 
 .card img{
   height:263px;
-  width:324px;
+  width:100%;
+  object-fit: cover;
 }
 
 .confirm-card {

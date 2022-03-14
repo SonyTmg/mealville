@@ -5,7 +5,17 @@
   <%#= image_tag "background.jpeg", class:"background-image bg-2" %>
   <div class="container my-5 d-flex justify-content-center gap-3 flex-wrap py-5 ">
     <% @events.each do |event| %>
-      <%= link_to event_path(id: event.id), class:"text-decoration-none text-black" do %>
+      <%= link_to event_path(id: event.id), class:"text-decoration-none text-black shadow" do %>
+        <%= render 'shared/event_card', event: event %>
+      <% end %>
+    <% end %>
+    <% @events.each do |event| %>
+      <%= link_to event_path(id: event.id), class:"text-decoration-none text-black shadow" do %>
+        <%= render 'shared/event_card', event: event %>
+      <% end %>
+    <% end %>
+    <% @events.each do |event| %>
+      <%= link_to event_path(id: event.id), class:"text-decoration-none text-black shadow" do %>
         <%= render 'shared/event_card', event: event %>
       <% end %>
     <% end %>

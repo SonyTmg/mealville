@@ -17,11 +17,12 @@ body, html {
 // background-size: cover;
 
   /* Navbar height = 80px*/
-  height: 100vh;
+  height: 90vh;
   width: 100%;
   position: relative;
   margin-top: -80px;
   overflow: hidden;
+  background-color: black;
 
   .splide {
     &::before {
@@ -37,7 +38,7 @@ body, html {
   }
 
   .splide__slide {
-    height: 100vh;
+    height: 90vh;
 
     img {
       width: 100%;

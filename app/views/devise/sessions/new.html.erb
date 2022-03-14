@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <div class="row justify-content-center">
-    <div class="col-4">
+    <div class="bg-dark-green col-4 p-4 rounded-3">
       <h2>Log in</h2>
         <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="form-inputs">
@@ -15,11 +15,11 @@
           </div>
 
           <div class="form-actions">
-            <%= f.button :submit, "Log in", class: 'btn btn-primary' %>
+            <%= f.button :submit, "Log in", class: 'btn btn-outline-primary' %>
           </div>
         <% end %>
         <br>
-        <%= link_to user_google_oauth2_omniauth_authorize_path, class: 'form-control btn btn-outline-secondary', method: :post do %>
+        <%= link_to user_google_oauth2_omniauth_authorize_path, class: 'form-control btn btn-outline-primary text-white', method: :post do %>
           <i class="fab fa-google"></i>
           Sign in with Google
         <% end %>

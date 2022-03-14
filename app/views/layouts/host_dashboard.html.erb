@@ -32,15 +32,17 @@
                 <% end %>
               </li>
               <li>
-                <a href="#" class="nav-link">
-                  <i class="fa fa-white fa-envelope"></i>
-                  TODO: Reviews
-                </a>
+                <% if current_user.stripe_user_id %>
+                  Connected with Stripe
+                <% else %>
+                  <p>You'll need to connet to Stripe before you can create an event.</p>
+                  <%= link_to "Connect to Stripe", stripe_button_link, class: 'btn btn-outline-primary'  %>
+                <% end %>
               </li>
             </ul>
           </div>
         </div>
-        <div class="col-12 col-md-8">
+        <div class="col-12 col-md-10">
           <%= yield %>
         </div>
       </div>
