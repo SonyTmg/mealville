@@ -1,0 +1,16 @@
+<div class="d-flex gap-3">
+  <div>
+    <%= image_tag (host.avatar_url || 'user-icon.png'), class: 'rounded-circle', style: 'width:100px;height:100px;' %>
+  </div>
+  <div>
+    <h4>
+      <%= host.name %>
+    </h4>
+    <p class="text-muted">
+      Joined <%= host.created_at.strftime("%d %B, %Y") %>
+    </p>
+    <p class="text-muted">
+      <i class="fa fa-star color-yellow"></i>  <%= host.average_rating %> (From <%= host.reviews.count %> reviews)
+    </p>
+  </div>
+</div>
