@@ -1,9 +1,18 @@
-<h1>Your Booking Details</h1>
-<p>TODO: Add more booking detail</p>
-Sending message to the host
-<%= @booking.id %>
-<%= simple_form_for :message, url: booking_message_host_path(booking_id: @booking.id) do |f| %>
-  <%= f.input :subject, as: :string %>
-  <%= f.input :body, as: :text %>
-  <%= f.submit 'Send', class: 'btn-submit' %>
-<% end %>
+<div class="row justify-content-center">
+  <div class="col-12 col-md-5 bg-dark-green p-4 rounded-4">
+    <h5>Booking Details</h5>
+    <br>
+    <p><strong>Host: </strong><%= link_to @booking.event.user.name, profile_path(id: @booking.event.user.id), class: 'text-primary'%></p>
+    <p><strong>Location: </strong><%= @booking.event.location %></p>
+    <p><strong>Description: </strong><%= @booking.event.description %></p>
+    <p><strong>Price: </strong>$<%= @booking.event.price_cents / 100 %></p>
+    <hr>
+    <h5>Sending message to the host</h5>
+    <br>
+    <%= simple_form_for :message, url: booking_message_host_path(booking_id: @booking.id) do |f| %>
+      <%= f.input :subject, as: :string %>
+      <%= f.input :body, as: :text %>
+      <%= f.submit 'Send', class: 'btn btn-outline-primary' %>
+    <% end %>
+  </div>
+</div>

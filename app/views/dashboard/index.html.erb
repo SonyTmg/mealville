@@ -1,38 +1,88 @@
 <%# User dashboard - my bookings page http://localhost:3000/dashboard. Shows all the booking that have been booked.%>
 <div class="bg-2">
   <h1 class="d-flex justify-content-center">My Bookings</h1>
+  <br>
   <div class="container d-flex justify-content-center gap-3 flex-wrap py-5 ">
-    <% current_user.bookings.each do |booking| %>
-      <div class="card w-25">
-        <img src="<%= url_for(booking.event.photos[0]) %>" alt="" class="img-fluid img-object-fit-cover card-img-top">
-        <div class="card-body py-2 px-3">
-          <div class="card-title">
-            <h1><%= booking.event.name %></h1>
-          </div>
-          <div class="card-content">
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">Location: <%= booking.event.location %></li>
-              <li class="list-group-item">Date: <%= booking.event.date %></li>
-              <li class="list-group-item">Time: <%= booking.event.start_time %></li>
-              <li class="list-group-item">
-                Status: <% if booking.cancelled? %>
+    <h4>Upcoming Bookings</h4>
+    <div class="table table-responsive">
+      <table class="table table-striped table-sm">
+        <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Event Name</th>
+              <th scope="col">Date</th>
+              <th scope="col">Price</th>
+              <th scope="col">Status</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+        <tbody>
+          <% @upcoming_bookings.each do |booking| %>
+            <tr>
+              <td><%= booking.id %></td>
+              <td><%= booking.event.name %></td>
+              <td><%= booking.event.date %></td>
+              <td><%= booking.event.price %></td>
+              <td>
+                <% if booking.cancelled? %>
                   <span class="text-danger">Cancelled</span>
                 <% elsif booking.pending? %>
                   <span class="text-muted">Pending</span>
                 <% else %>
                   <span class="text-success">Confirmed</span>
                 <% end %>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <% if !booking.cancelled? %>
-          <div class="card-footer d-flex justify-content-between">
-            <p><%= link_to 'Cancel', event_booking_cancel_path(booking_id: booking.id, event_id: booking.event.id), method: :patch, data: {:confirm => 'Are you sure?'}, class: "text-danger" %></p>
-            <p><%= link_to 'View Booking', booking_path(id: booking.id) %></p>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
+              </td>
+              <td>
+                <%= link_to 'Contact Host', booking_path(id: booking.id) %>
+                <%= link_to 'Event', event_path(id: booking.event.id) %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="container d-flex justify-content-center gap-3 flex-wrap py-5 ">
+    <h4>Past Bookings</h4>
+    <div class="table table-responsive">
+      <table class="table table-striped table-sm">
+        <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Event Name</th>
+              <th scope="col">Date</th>
+              <th scope="col">Price</th>
+              <th scope="col">Status</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+        <tbody>
+          <% @past_bookings.each do |booking| %>
+            <tr>
+              <td><%= booking.id %></td>
+              <td><%= booking.event.name %></td>
+              <td><%= booking.event.date %></td>
+              <td><%= booking.event.price %></td>
+              <td>
+                <% if booking.cancelled? %>
+                  <span class="text-danger">Cancelled</span>
+                <% elsif booking.pending? %>
+                  <span class="text-muted">Pending</span>
+                <% else %>
+                  <span class="text-success">Confirmed</span>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to 'Contact Host', booking_path(id: booking.id) %>
+                <%= link_to 'Event', event_path(id: booking.event.id) %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
