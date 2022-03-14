@@ -1,40 +1,46 @@
-host profile for <%= @user.name %>
-<br>
-ratings: <%= @ratings %>
-<br>
-<h3>Reviews</h3>
-<br>
-<ul>
-  <% @reviews.each do |review| %>
-    <li>
-      <p>
-        By User: <%= review.by_user.name %>
-        <br>
-        Rating: <%= review.rating %>
-        <br>
-        Comment: <%= review.comment %>
-      </p>
-    </li>
-  <% end %>
-</ul>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <%= render 'host', host: @user %>
+      <hr>
+      <h3>Reviews</h3>
+      <div class="d-flex flex-wrap gap-3">
+        <% @reviews.each do |review| %>
+          <div class="d-flex flex-column">
+            <div class="d-flex gap-3">
+              <%= image_tag (review.by_user.avatar_url || 'user-icon.png'), class: 'rounded-circle', style: 'width:50px;height:50px;' %>
+              <div>
+                <h6>
+                  <%= review.by_user.name %>
+                </h6>
+                <p class="text-muted">
+                  <%= review.created_at.strftime("%d %B, %Y") %>
+                </p>
+              </div>
+            </div>
+            <p><%= review.comment %></p>
+          </div>
+        <% end %>
+      </div>
 
-<hr>
-<h3>Events</h3>
-<ol>
-  <% @user.events.each do |event| %>
-    <li>
-      Event name: <%= event.name %>
-    </li>
-  <% end %>
-</ol>
+      <hr>
+      <h3>Events</h3>
+      <div class="d-flex flex-column">
+        <% @user.events.each do |event| %>
+          Event name: <%= event.name %>
+        <% end %>
+      </div>
 
-<% if current_user && @valid_user_ids.include?(current_user.id) %>
-  <h3>Leave a review</h3>
-  <%= simple_form_for(@new_review, method: :post, url: reviews_path) do |f| %>
-    <%= f.input :rating %>
-    <%= f.input :comment %>
-    <%= f.input :for_user_id,  as: :hidden, input_html: { value: @user.id } %>
-    <%= f.input :by_user_id,  as: :hidden, input_html: { value: current_user.id } %>
-    <%= f.submit 'Add Review', class: 'btn btn-success' %>
-  <% end %>
-<% end %>
+      <% if current_user && @valid_user_ids.include?(current_user.id) %>
+        <h3>Leave a review</h3>
+        <%= simple_form_for(@new_review, method: :post, url: reviews_path) do |f| %>
+          <%= f.input :rating %>
+          <%= f.input :comment %>
+          <%= f.input :for_user_id,  as: :hidden, input_html: { value: @user.id } %>
+          <%= f.input :by_user_id,  as: :hidden, input_html: { value: current_user.id } %>
+          <%= f.submit 'Add Review', class: 'btn btn-success' %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

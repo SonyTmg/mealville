@@ -9,15 +9,5 @@
         <%= render 'shared/event_card', event: event %>
       <% end %>
     <% end %>
-    <% @events.each do |event| %>
-      <%= link_to event_path(id: event.id), class:"text-decoration-none text-black shadow" do %>
-        <%= render 'shared/event_card', event: event %>
-      <% end %>
-    <% end %>
-    <% @events.each do |event| %>
-      <%= link_to event_path(id: event.id), class:"text-decoration-none text-black shadow" do %>
-        <%= render 'shared/event_card', event: event %>
-      <% end %>
-    <% end %>
   </div>
 </div>

@@ -3,7 +3,7 @@
     <%= image_tag (host.avatar_url || 'user-icon.png'), class: 'rounded-circle', style: 'width:100px;height:100px;' %>
   </div>
   <div>
-    <h4>
+    <h4 class="h5">
       Hosted by <%= host.name %>
     </h4>
     <p class="text-muted">
@@ -19,7 +19,7 @@
 </div>
 
 <hr>
-<h5 class="mb-4">Reviews for the host</h5>
+<h5 class="mb-4 h6">Reviews for the host</h5>
 
 <div class="d-flex flex-wrap gap-3">
   <% host.reviews.first(5).each do |review| %>

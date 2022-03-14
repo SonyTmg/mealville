@@ -15,13 +15,12 @@
   <body>
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
-    <div class="container-fluid p-0">
+    <div class="container p-0">
       <div class="row">
         <div class="col-12 col-md-2">
           <div class="d-flex flex-column flex-shrink-0 p-3 h-100">
-            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none">
-              <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-              <span class="fs-4">Host Dashboard</span>
+            <a href="<%=host_dashboard_path%>" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none">
+              <span class="fs-5 m-0">Host Dashboard</span>
             </a>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
@@ -33,7 +32,9 @@
               </li>
               <li>
                 <% if current_user.stripe_user_id %>
-                  Connected with Stripe
+                  <div class="text-success">
+                    Connected with Stripe
+                  </div>
                 <% else %>
                   <p>You'll need to connet to Stripe before you can create an event.</p>
                   <%= link_to "Connect to Stripe", stripe_button_link, class: 'btn btn-outline-primary'  %>

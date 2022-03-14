@@ -1,22 +1,22 @@
 <div class="container mt-3">
   <div class="d-flex justify-content-between mb-4">
-    <h2>Event - <%= @event.name %></h2>
-    <%= link_to "Edit", edit_host_event_path(id: @event.id), class: 'btn btn-primary' %>
+    <h2 class="h4">Event - <%= @event.name %></h2>
+    <%= button_to "Edit", edit_host_event_path(id: @event.id), class: 'btn btn-outline-info', method: :get %>
   </div>
   <div class="row">
-    <div class="col-5">
+    <div class="col-6">
       <strong>Event Info:</strong>
-      <p>Name: <%= @event.name %></p>
-      <p>Description: <%= @event.description %></p>
-      <p>Price: $<%= @event.price %>AUD</p>
-      <p>Capacity: <%= @event.capacity %> person</p>
-      <p>Start Time: <%= @event.formatted_start_time %></p>
-      <p>End Time:<%= @event.formatted_end_time %></p>
-      <p>Event Date: <%= @event.formatted_date %></p>
+      <p><strong>Name:</strong> <%= @event.name %></p>
+      <p><strong>Description:</strong> <%= @event.description %></p>
+      <p><strong>Price:</strong> $<%= @event.price %>AUD</p>
+      <p><strong>Capacity:</strong> <%= @event.capacity %> person</p>
+      <p><strong>Start Time:</strong> <%= @event.formatted_start_time %></p>
+      <p><strong>End Time:</strong><%= @event.formatted_end_time %></p>
+      <p><strong>Event Date:</strong> <%= @event.formatted_date %></p>
     </div>
-    <div class="col-7 d-flex flex-wrap gap-1">
+    <div class="col-6 d-flex flex-wrap gap-1 align-content-start">
       <% @event.photos.each do |photo| %>
-        <%= cl_image_tag photo.key, width: 300, crop: :scale, class: 'img-fluid' %>
+        <%= cl_image_tag photo.key, width: 200, height: 200, crop: :fill, class: 'img-fluid host-img-event-show' %>
       <% end %>
     </div>
   </div>
@@ -24,7 +24,7 @@
   <br>
   <div class="row">
     <div class="col-12">
-      <h3>Bookings</h3>
+      <h3 class="h4">Bookings</h3>
       <ol>
       <% @event.bookings.each do |booking| %>
         <li>

@@ -2,6 +2,10 @@
   background-color: transparent;
   border-color: $gold;
 
+  svg {
+    color: white;
+  }
+
   &:focus {
     background-color: transparent;
   }
@@ -14,4 +18,10 @@
   @media screen and (max-width: 420px){
     height: 60px;
   }
+}
+
+input[type=file]::file-selector-button {
+  padding: .2em .4em;
+  border-radius: 0;
+  background-color: transparent;
 }
