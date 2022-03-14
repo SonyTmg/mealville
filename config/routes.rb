@@ -34,9 +34,8 @@ Rails.application.routes.draw do
   end
 
   resources :bookings, only: %i[destroy show index] do
-    get '/confirm', to: 'bookings#confirm'
     post '/message-host', to: 'bookings#message_host'
-    collection do
+    member do
       get :success
     end
   end

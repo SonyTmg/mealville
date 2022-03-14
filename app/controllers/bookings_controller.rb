@@ -9,8 +9,9 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
   end
 
-  def confirm
-    @booking = Booking.find(params[:booking_id])
+  def new
+    @booking = Booking.new
+    @event = Event.find(params[:event_id])
   end
 
   def create
@@ -20,7 +21,8 @@ class BookingsController < ApplicationController
 
     @booking.event = @event
     @booking.user_id = current_user.id
-    if @booking.valid?
+
+     if @booking.valid?
       # redirect to checkout
       Stripe.api_key = ENV["STRIPE_SECRET_KEY"]
       session = Stripe::Checkout::Session.create({
@@ -50,20 +52,30 @@ class BookingsController < ApplicationController
       redirect_to session.url
       # redirect_to event_confirm_booking_path(event_id: params[:event_id])
     else
-
-      render 'events/show'
+      render 'events/show'   
+  end
+    
+  def complete_booking
+      @booking.save
+      redirect_to success_booking_path(@booking)
+      UserMailer.with(user: @booking.event.user, event: @booking.event).booking_request_email.deliver_later
+      # render 'success'
+    else
+      # flash[:notice] = "Error processing booking. Try again later."
+      # flash[:alert] = @booking.errors.full_messages
+      render :new
     end
   end
 
-  def complete_booking
-    @event = Event.find(params[:event_id])
-    @booking = Booking.new
-    @booking.event = @event
-    @booking.user_id = current_user.id
-    @booking.save
-    UserMailer.with(user: current_user, event: @booking.event).booking_request_email.deliver_later
-    render 'success'
-  end
+#   def complete_booking
+#     @event = Event.find(params[:event_id])
+#     @booking = Booking.new
+#     @booking.event = @event
+#     @booking.user_id = current_user.id
+#     @booking.save
+#     UserMailer.with(user: current_user, event: @booking.event).booking_request_email.deliver_later
+#     render 'success'
+#   end
 
   def cancel
     @booking = Booking.find(params[:booking_id])
