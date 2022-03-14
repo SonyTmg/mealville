@@ -21,7 +21,6 @@ class BookingsController < ApplicationController
 
     @booking.event = @event
     @booking.user_id = current_user.id
-
      if @booking.valid?
       # redirect to checkout
       Stripe.api_key = ENV["STRIPE_SECRET_KEY"]
@@ -34,11 +33,11 @@ class BookingsController < ApplicationController
             },
             unit_amount: @event.price_cents,
           },
-          quantity: 1,
+          quantity: @booking.noguest,
         }],
         mode: 'payment',
         # redirect urls after checkout is complete
-        success_url: complete_booking_event_bookings_url, # should redirect to success page
+        success_url: complete_booking_event_bookings_url(noguest: @booking.noguest), # should redirect to success page
         cancel_url: event_url(@event), # should redirect to show page maybe
         # transferring funds
         payment_intent_data: {
@@ -52,11 +51,17 @@ class BookingsController < ApplicationController
       redirect_to session.url
       # redirect_to event_confirm_booking_path(event_id: params[:event_id])
     else
-      render 'events/show'   
+      render 'events/show'
+    end
   end
-    
+
   def complete_booking
-      @booking.save
+    @event = Event.find(params[:event_id])
+    @booking = Booking.new
+    @booking.noguest = params[:noguest]
+    @booking.event = @event
+    @booking.user_id = current_user.id
+    if @booking.save
       redirect_to success_booking_path(@booking)
       UserMailer.with(user: @booking.event.user, event: @booking.event).booking_request_email.deliver_later
       # render 'success'
