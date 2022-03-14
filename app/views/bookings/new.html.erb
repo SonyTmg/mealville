@@ -13,12 +13,13 @@
         <input type="number" class="form-control" id="inputNumber" placeholder="expiry">
         <label for="card details" class="col-sm-2 col-form-label"></label>
         <input type="number" class="form-control" id="inputNumber" placeholder="ccv">
-
-
-        <%= simple_form_for [@booking.event, @booking] do |f| %>
-          <%= f.association :user, as: :hidden, input_html: { value: current_user.id } %>
+         <% @booking.errors.full_messages.each do |message| %>
+          <p> <%= message %>  </p>
+         <% end %>
+        <%= simple_form_for [@event, @booking] do |f| %>
+          <%= f.input :noguest, label: 'No. of guests' %>
           <%= f.association :event, as: :hidden %>
-          <%= f.submit "Confirm Booking", class: 'btn-submit' %>
+          <%= f.button :submit, class: 'btn btn-lg btn-info' %>
         <% end %>
       </div>
       <div class="col-6">
@@ -27,16 +28,16 @@
             <div class="row">
 
               <div class="card w-100 text-black confirm-card">
-                <img src="<%= url_for(@booking.event.photos[0]) %>" alt="" class="img-fluid img-object-fit-cover card-img-top">
+                <img src="<%= url_for(@event.photos[0]) %>" alt="" class="img-fluid img-object-fit-cover card-img-top">
                 <div class="card-body py-2 px-3">
                   <div class="card-title">
-                    <h1><%= @booking.event.name %></h1>
+                    <h1><%= @event.name %></h1>
                   </div>
                   <div class="card-divider">
                     <div class="card-content w-100 d-flex justify-content-between">
                       <div>
-                        <p> $<%= @booking.event.price %> /day</p>
-                        <p> <i class="fa fa-map-marked-alt" aria-hidden="true"></i> <%= @booking. event.location %> </p>
+                        <p> $<%= @event.price %> /day</p>
+                        <p> <i class="fa fa-map-marked-alt" aria-hidden="true"></i> <%= @event.location %> </p>
                       </div>
                       <div>
                         <p><%= '⭐️' * [3, 4, 5].sample  %></p>
@@ -45,24 +46,24 @@
                   </div>
                   <div class="card-footer">
                     <p>
-                      Date: <%= @booking.event.formatted_date %>
+                      Date: <%= @event.formatted_date %>
                     </p>
                     <p>
-                      From: <%= @booking.event.formatted_start_time %>
+                      From: <%= @event.formatted_start_time %>
                       <br>
-                      To: <%= @booking.event.formatted_end_time %>
+                      To: <%= @event.formatted_end_time %>
                     </p>
                     <p>
-                      <%= @booking.event.description %>
+                      <%= @event.description %>
                     </p>
                     <p>
-                      Number of Guests: <%= @booking.noguest %>
+                      Number of Guests: <%# @booking.noguest %>
                     </p>
                     <p>
-                      Booked by: <%= @booking.user.email %>
+                      Booked by: <%# @event.user.email %>
                     </p>
                     <p>
-                      Total Price: <%= @booking.event.price %>
+                      Total Price: <%# @event.price %>
                     </p>
                   </div>
                 </div>

@@ -45,6 +45,11 @@ class Host::EventsController < ApplicationController
     redirect_to host_events_path
   end
 
+  def checkout
+    @event = Event.find(params[:id])
+    @booking = Booking.new
+  end
+
   private
 
   def set_event

@@ -9,30 +9,73 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
   end
 
-  def confirm
-    @booking = Booking.find(params[:booking_id])
+  def new
+    @booking = Booking.new
+    @event = Event.find(params[:event_id])
   end
 
   def create
+    @event = Event.find(params[:event_id])
     # this appears as a section of an event's show page
     @booking = Booking.new(booking_params)
-    @event = Event.find(params[:event_id])
+
     @booking.event = @event
-    # @event = Event.find(params[:event_id])
     @booking.user_id = current_user.id
-    if @booking.save
-      redirect_to booking_confirm_path(booking_id: @booking.id)
+
+     if @booking.valid?
+      # redirect to checkout
+      Stripe.api_key = ENV["STRIPE_SECRET_KEY"]
+      session = Stripe::Checkout::Session.create({
+        line_items: [{
+          price_data: {
+            currency: 'aud',
+            product_data: {
+              name: @event.name,
+            },
+            unit_amount: @event.price_cents,
+          },
+          quantity: 1,
+        }],
+        mode: 'payment',
+        # redirect urls after checkout is complete
+        success_url: complete_booking_event_bookings_url, # should redirect to success page
+        cancel_url: event_url(@event), # should redirect to show page maybe
+        # transferring funds
+        payment_intent_data: {
+          transfer_data: {
+            destination: @event.user.stripe_user_id.to_s,
+          }
+        }
+      })
+
+      # this redirects to checkout session hosted on stripe
+      redirect_to session.url
+      # redirect_to event_confirm_booking_path(event_id: params[:event_id])
+    else
+      render 'events/show'   
+  end
+    
+  def complete_booking
+      @booking.save
+      redirect_to success_booking_path(@booking)
       UserMailer.with(user: @booking.event.user, event: @booking.event).booking_request_email.deliver_later
       # render 'success'
     else
-      flash[:notice] = "Error processing booking. Try again later."
-      flash[:alert] = @booking.errors.full_messages
-      render 'events/show'
+      # flash[:notice] = "Error processing booking. Try again later."
+      # flash[:alert] = @booking.errors.full_messages
+      render :new
     end
   end
 
-  def success
-  end
+#   def complete_booking
+#     @event = Event.find(params[:event_id])
+#     @booking = Booking.new
+#     @booking.event = @event
+#     @booking.user_id = current_user.id
+#     @booking.save
+#     UserMailer.with(user: current_user, event: @booking.event).booking_request_email.deliver_later
+#     render 'success'
+#   end
 
   def cancel
     @booking = Booking.find(params[:booking_id])
