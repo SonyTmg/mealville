@@ -338,11 +338,8 @@ DEPENDENCIES
   faker
   font-awesome-sass
   geocoder
-
   httparty
-
   icalendar (~> 2.7, >= 2.7.1)
-
   jbuilder (~> 2.7)
   listen (~> 3.3)
   money-rails
@@ -372,4 +369,4 @@ RUBY VERSION
    ruby 3.0.3p157
 
 BUNDLED WITH
-   2.3.6
+   2.3.8
