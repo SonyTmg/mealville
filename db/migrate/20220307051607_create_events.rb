@@ -2,7 +2,7 @@ class CreateEvents < ActiveRecord::Migration[6.1]
   def change
     create_table :events do |t|
       t.string :name
-      t.integer :price
+      t.integer :price_cents
       t.text :description
       t.string :location
       t.time :start_time
