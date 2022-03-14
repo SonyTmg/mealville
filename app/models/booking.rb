@@ -5,7 +5,7 @@ class Booking < ApplicationRecord
   enum status: [:pending, :confirmed, :cancelled], _default: "pending"
 
   validate :host_cannot_book_their_own_event
-  validate :user_cannot_do_multiple_booking_for_an_event
+  validate :user_cannot_do_multiple_booking_for_an_event, on: :create
 
   # validate :ensure_total_guests_not_exceed_capacity
 
