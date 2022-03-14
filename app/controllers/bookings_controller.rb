@@ -9,8 +9,9 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
   end
 
-  def confirm
-    @booking = Booking.find(params[:booking_id])
+  def new
+    @booking = Booking.new
+    @event = Event.find(params[:event_id])
   end
 
   def create
@@ -21,13 +22,13 @@ class BookingsController < ApplicationController
     # @event = Event.find(params[:event_id])
     @booking.user_id = current_user.id
     if @booking.save
-      redirect_to booking_confirm_path(booking_id: @booking.id)
+      redirect_to success_booking_path(@booking)
       UserMailer.with(user: @booking.event.user, event: @booking.event).booking_request_email.deliver_later
       # render 'success'
     else
-      flash[:notice] = "Error processing booking. Try again later."
-      flash[:alert] = @booking.errors.full_messages
-      render 'events/show'
+      # flash[:notice] = "Error processing booking. Try again later."
+      # flash[:alert] = @booking.errors.full_messages
+      render :new
     end
   end
 
