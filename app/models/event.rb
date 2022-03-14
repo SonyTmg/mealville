@@ -3,6 +3,7 @@ class Event < ApplicationRecord
   has_many :bookings, dependent: :destroy
   has_many :reviews, through: :bookings
   has_many_attached :photos
+  monetize :price_cents
 
   validates :name,
             :cuisine,

@@ -35,4 +35,10 @@
       </div>
     <% end %>
   </div>
+
+  <% if current_user.stripe_user_id %>
+    Connected with Stripe
+  <% else %>
+    <%= link_to "Connect to Stripe", stripe_button_link  %>
+  <% end %>
 </div>

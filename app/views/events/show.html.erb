@@ -42,9 +42,19 @@
             </p>
           </div>
           <div class="col-12">
+
+            <%# <%= link_to 'Book now' event_bookings%>
+            <%# <%= link_to 'Book now', checkout_host_event_path(@event) %>
+            <%# <% if false %>
+              <%= simple_form_for [@event, @booking] do |f| %>
+                <%= f.association :event, as: :hidden %>
+                <%= f.button :submit, class: 'btn-submit' %>
+              <% end %>
+           
             <p>
               <%= @event.formatted_date %>
             </p>
+
           </div>
           <div class="col-12">
             <p>
