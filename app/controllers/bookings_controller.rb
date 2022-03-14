@@ -44,7 +44,7 @@ class BookingsController < ApplicationController
         mode: 'payment',
         # redirect urls after checkout is complete
         success_url: complete_booking_event_bookings_url, # should redirect to success page
-        cancel_url: 'https://www.youtube.com', # should redirect to index page maybe
+        cancel_url: event_url(@event), # should redirect to show page maybe
         # transferring funds
         payment_intent_data: {
           transfer_data: {
@@ -63,10 +63,9 @@ class BookingsController < ApplicationController
 
   def complete_booking
     @event = Event.find(params[:event_id])
-    @booking = Booking.new(booking_params)
+    @booking = Booking.new
     @booking.event = @event
     @booking.user_id = current_user.id
-    raise
     @booking.save
     UserMailer.with(user: current_user, event: @booking.event).booking_request_email.deliver_later
     render 'success'
@@ -85,8 +84,7 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    raise
-    params.require(:booking).permit(:event_id)
+    params.require(:booking).permit(:event_id, :user_id)
   end
 
 end
