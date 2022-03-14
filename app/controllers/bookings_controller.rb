@@ -42,16 +42,18 @@ class BookingsController < ApplicationController
           quantity: 1,
         }],
         mode: 'payment',
-        # These placeholder URLs will be replaced in a following step.
-        success_url: 'https://www.google.com',
-        cancel_url: 'https://www.youtube.com',
+        # redirect urls after checkout is complete
+        success_url: complete_booking_event_bookings_url, # should redirect to success page
+        cancel_url: 'https://www.youtube.com', # should redirect to index page maybe
+        # transferring funds
         payment_intent_data: {
           transfer_data: {
-            destination: "#{@event.user.stripe_user_id}",
+            destination: @event.user.stripe_user_id.to_s,
           }
         }
       })
 
+      # this redirects to checkout session hosted on stripe
       redirect_to session.url
       # redirect_to event_confirm_booking_path(event_id: params[:event_id])
     else
@@ -60,7 +62,11 @@ class BookingsController < ApplicationController
   end
 
   def complete_booking
-    byebug
+    @event = Event.find(params[:event_id])
+    @booking = Booking.new(booking_params)
+    @booking.event = @event
+    @booking.user_id = current_user.id
+    raise
     @booking.save
     UserMailer.with(user: current_user, event: @booking.event).booking_request_email.deliver_later
     render 'success'
@@ -79,7 +85,8 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:event_id, :user_id)
+    raise
+    params.require(:booking).permit(:event_id)
   end
 
 end

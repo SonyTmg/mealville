@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   resources :events do
     resources :bookings, only: %i[create new] do
       patch '/cancel', to: 'bookings#cancel'
+      patch '/confirm', to: 'bookings#confirm'
       collection do
         get :complete_booking
       end
@@ -38,4 +39,5 @@ Rails.application.routes.draw do
 
   resources :reviews, only: %i[show]
   get "stripe/connect", to: "stripe#connect", as: :stripe_connect
+
 end
