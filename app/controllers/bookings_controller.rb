@@ -66,7 +66,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new
     @booking.event = @event
     @booking.user_id = current_user.id
-    i@booking.save
+    @booking.save
     UserMailer.with(user: current_user, event: @booking.event).booking_request_email.deliver_later
     render 'success'
   end
