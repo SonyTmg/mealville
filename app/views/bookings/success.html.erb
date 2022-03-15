@@ -1,4 +1,17 @@
-<h1 class="text-center">Booking requested!!</h1>
-<div class="container d-flex justify-content-center">
-  <img src="/success.png" alt="">
+
+<div class="container wrap d-flex flex-column align-items-center justify-content-center">
+  <h1 class="text-center ">Booking requested!</h1>
+  <div class="container d-flex p-4 justify-content-center ">
+    <%= image_tag 'check-solid.svg', style: "width: 160px;" %>
+  </div>
+  <div class="container d-flex justify-content-center p-4 ">
+    <h3>Thank you!</h3>
+  </div>
+  <div class="container d-flex justify-content-center p-4 ">
+    <p>We have sent your booking details to your account registered email for reference. Your host has been notified and will confirm <%= link_to "your booking", dashboard_path%>.</p>
+  </div>
+
+  <div class="container d-flex justify-content-center p-4 ">
+    <%= link_to "Home", root_path, class: 'btn btn-outline-primary' %>
+  </div>
 </div>
