@@ -2,16 +2,8 @@
   <div class="container my-5 pt-5">
     <div class="row">
       <div class="col-12 col-lg-8">
-        <div class="row">
-          <div class="col-12 col-lg-9">
-            <%= cl_image_tag(@event.photos[0].key, crop: :fill, class: 'img-fluid w-100 img-event-show') %>
-          </div>
-          <div class="col-12 col-lg-3 gap-2 d-flex flex-column">
-            <%= @event.photos[1] && cl_image_tag(@event.photos[1].key, crop: :fill, class: 'img-fluid w-100') %>
-            <%= @event.photos[2] && cl_image_tag(@event.photos[2].key, crop: :fill, class: 'img-fluid w-100') %>
-            <%= @event.photos[3] && cl_image_tag(@event.photos[3].key, crop: :fill, class: 'img-fluid w-100') %>
-          </div>
-        </div>
+
+          <%= render 'showcase' %>
           <hr>
         <div class="row">
           <div class="col-12">
