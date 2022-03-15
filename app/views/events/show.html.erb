@@ -70,6 +70,7 @@
             data-mapbox-markers-value="<%= @markers.to_json %>"
             data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY']%>">
           </div>
+          <%= link_to "Navigate Me", "https://www.google.com/maps/search/?api=1&query=#{@event.latitude},#{@event.longitude}", :target => "_blank" %>
         </div>
       </div>
     </div>
