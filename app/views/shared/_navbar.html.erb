@@ -16,10 +16,14 @@
 
 
       <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <%#= link_to "Create an event", new_host_event_path, class: 'btn btn-outline-info rounded rounded-4 text-white mx-3 fw-bold' %>
+          <%= link_to 'Explore', events_path, class:"btn btn-outline-info mx-3"%>
+        </li>
         <% if user_signed_in? %>
           <% if !current_user.host %>
             <li class="nav-item">
-              <%= button_to "Become a host", become_host_path, method: :patch, class: 'btn btn-info rounded rounded-4 text-white mx-3 fw-bold' %>
+              <%= button_to "Become a host", become_host_path, method: :patch, class: 'btn btn-outline-primary rounded rounded-4  mx-3' %>
             </li>
           <% end %>
           <li class="nav-item dropdown">
@@ -34,10 +38,6 @@
             </div>
           </li>
         <% else %>
-          <li class="nav-item">
-            <%#= link_to "Create an event", new_host_event_path, class: 'btn btn-outline-info rounded rounded-4 text-white mx-3 fw-bold' %>
-            <%= link_to 'Explore', events_path, class:"btn btn-outline-info mx-3"%>
-          </li>
           <li class="nav-item">
             <%= link_to "Login", new_user_session_path, class: "nav-link text-info" %>
           </li>
