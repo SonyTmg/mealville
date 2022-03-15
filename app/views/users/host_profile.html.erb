@@ -38,7 +38,7 @@
           <%= f.input :comment %>
           <%= f.input :for_user_id,  as: :hidden, input_html: { value: @user.id } %>
           <%= f.input :by_user_id,  as: :hidden, input_html: { value: current_user.id } %>
-          <%= f.submit 'Add Review', class: 'btn btn-success' %>
+          <%= f.submit 'Add Review', class: 'btn btn-outline-primary' %>
         <% end %>
       <% end %>
     </div>

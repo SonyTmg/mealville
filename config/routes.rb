@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'dashboard#index'
   patch '/become-host', to: 'users#become_host'
   get '/profiles/:id', to: 'users#host_profile', as: 'profile'
+  get '/faq', to: 'pages#faq'
+  get '/terms', to: 'pages#terms'
+  get '/privacy', to: 'pages#privacy'
 
   # These routes are isolated for host users, that do not affect general users.
   # These will all fall under a /host route eg:
