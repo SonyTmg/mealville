@@ -19,7 +19,7 @@
         <%= simple_form_for [@event, @booking] do |f| %>
           <%= f.input :noguest, label: 'No. of guests' %>
           <%= f.association :event, as: :hidden %>
-          <%= f.button :submit, class: 'btn btn-lg btn-info' %>
+          <%= f.submit 'Proceed to pay', class: 'btn btn-lg btn-outline-primary' %>
         <% end %>
       </div>
       <div class="col-6">
