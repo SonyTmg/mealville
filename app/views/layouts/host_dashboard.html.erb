@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="h-100">
   <head>
     <title>Mealville</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -12,42 +12,44 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
   </head>
 
-  <body>
-    <%= render 'shared/navbar' %>
-    <%= render 'shared/flashes' %>
-    <div class="container p-0">
-      <div class="row">
-        <div class="col-12 col-md-2">
-          <div class="d-flex flex-column flex-shrink-0 p-3 h-100">
-            <a href="<%=host_dashboard_path%>" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none">
-              <span class="fs-5 m-0">Host Dashboard</span>
-            </a>
-            <hr>
-            <ul class="nav nav-pills flex-column mb-auto">
-              <li>
-                <%= link_to host_events_path, class: "nav-link" do %>
-                  <i class="fa fa-white fa-calendar"></i>
-                  Events
-                <% end %>
-              </li>
-              <li>
-                <% if current_user.stripe_user_id %>
-                  <div class="text-success">
-                    Connected with Stripe
-                  </div>
-                <% else %>
-                  <p>You'll need to connect to Stripe before you can create an event.</p>
-                  <%= link_to "Connect to Stripe", stripe_button_link, class: 'btn btn-outline-primary'  %>
-                <% end %>
-              </li>
-            </ul>
+  <body class="d-flex flex-column h-100">
+    <main class=" flex-shrink-0">
+      <%= render 'shared/navbar' %>
+      <%= render 'shared/flashes' %>
+      <div class="container p-0">
+        <div class="row">
+          <div class="col-12 col-md-2">
+            <div class="d-flex flex-column flex-shrink-0 p-3 h-100">
+              <a href="<%=host_dashboard_path%>" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none">
+                <span class="fs-5 m-0">Host Dashboard</span>
+              </a>
+              <hr>
+              <ul class="nav nav-pills flex-column mb-auto">
+                <li>
+                  <%= link_to host_events_path, class: "nav-link" do %>
+                    <i class="fa fa-white fa-calendar"></i>
+                    Events
+                  <% end %>
+                </li>
+                <li>
+                  <% if current_user.stripe_user_id %>
+                    <div class="text-success">
+                      Connected with Stripe
+                    </div>
+                  <% else %>
+                    <p>You'll need to connect to Stripe before you can create an event.</p>
+                    <%= link_to "Connect to Stripe", stripe_button_link, class: 'btn btn-outline-primary'  %>
+                  <% end %>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-12 col-md-10">
+            <%= yield %>
           </div>
         </div>
-        <div class="col-12 col-md-10">
-          <%= yield %>
-        </div>
       </div>
-    </div>
+    </main>
     <%= render 'shared/footer' %>
   </body>
 </html>
