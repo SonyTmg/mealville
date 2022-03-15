@@ -2,7 +2,6 @@
   <div class="container my-5 pt-5">
     <div class="row">
       <div class="col-12 col-lg-8">
-
           <%= render 'showcase' %>
           <hr>
         <div class="row">
@@ -15,9 +14,13 @@
         <div class="row flex-column">
           <div class="col-12 mb-3">
             <div class="row">
-              <div class="col-12">
+              <div class="col-8">
                 <h1 class="fw-bold h2"><%= @event.name %></h1>
                 <h3 class="h5">$ <%= @event.price %> AUD</h3>
+              </div>
+              <div class="col-4">
+                <!-- Button trigger modal -->
+                <i class="fa fa-share"></i>  <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Share</a>
               </div>
             </div>
           </div>
@@ -63,6 +66,44 @@
             data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY']%>">
           </div>
           <%= link_to "Navigate Me", "https://www.google.com/maps/search/?api=1&query=#{@event.latitude},#{@event.longitude}", :target => "_blank" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content bg-dark-green mx-auto" style="width: 380px;border-radius: 10px;">
+      <div class="modal-header">
+        <h5 class="modal-title text-center" id="exampleModalLabel">Share this event</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-4 text-center">
+            <i class="fab fa-facebook"></i>
+            <strong>
+              <a href="https://www.facebook.com/sharer/sharer.php?u=#<%= event_url %>" target="_blank">
+                Facebook
+              </a>
+            </strong>
+          </div>
+          <div class="col-4 text-center">
+            <i class="fab fa-twitter"></i>
+            <strong>
+              <a href="http://twitter.com/share?url=<%= event_url %>">
+                Twitter
+              </a>
+            </strong>
+          </div>
+          <div class="col-4 text-center">
+            <i class="fa fa-envelope"></i>
+            <strong>
+              <a href="mailto:?body=Check out this event <%= event_url %>&subject=<%= event_url %>">Email</a>
+            </strong>
+          </div>
         </div>
       </div>
     </div>
