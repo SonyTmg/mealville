@@ -1,11 +1,21 @@
 .img-event-show {
   height: 625px;
+  width: 100%;
   object-fit: cover;
 }
+
 .img-event-thumb {
   height: 150px;
-  width: 150px;
+  width: 100%;
   object-fit: cover;
+
+  @media screen and (max-width: 420px) {
+    height: auto;
+  }
+}
+
+.thumbnails-container {
+  scroll-snap-type: x mandatory;
 }
 
 .host-img-event-show {

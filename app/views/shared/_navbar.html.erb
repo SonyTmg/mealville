@@ -1,4 +1,4 @@
-<div class="navbar navbar-expand-sm navbar-lewagon navbar-light w-100">
+<div class="navbar navbar-expand-sm navbar-lewagon navbar-dark w-100">
   <div class="container-fluid px-4">
     <%= link_to root_path, class: "navbar-brand" do %>
         <%= image_tag "MV.svg" %>
@@ -7,11 +7,13 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+    <div class="d-none d-sm-block w-50">
       <% if (params[:controller] == "events" && (params[:action] == "index" || params[:action] == "show")) %>
-        <div class="d-flex justify-content-center w-50">
+        <div class="d-flex justify-content-center w-100">
           <%= render 'shared/search_form' %>
         </div>
       <% end %>
+    </div>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
 
@@ -45,4 +47,12 @@
       </ul>
     </div>
   </div>
+
+</div>
+<div class="d-block d-sm-none w-100 px-3 mt-5">
+  <% if (params[:controller] == "events" && (params[:action] == "index" || params[:action] == "show")) %>
+    <div class="d-flex justify-content-center w-100">
+      <%= render 'shared/search_form' %>
+    </div>
+  <% end %>
 </div>
