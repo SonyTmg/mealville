@@ -1,8 +1,11 @@
 <%#= Index page for all the event listings (shown after browse all) %>
 <div class="container">
-  <p><%= "You have #{@events.count} Matching" %>
-    <%= @events.count == 1 ? 'Result.' : 'Results.' %></p>
-  <%#= image_tag "background.jpeg", class:"background-image bg-2" %>
+  <% if @from_search %>
+    <div class="text-center mt-4">
+      <p class=""><%= "You have #{@events.count} Matching" %>
+        <%= @events.count == 1 ? 'Result.' : 'Results.' %></p>
+    </div>
+  <% end %>
   <div class="container my-5 d-flex justify-content-center gap-3 flex-wrap py-5 ">
     <% @events.each do |event| %>
       <%= link_to event_path(id: event.id), class:"text-decoration-none text-black shadow" do %>
