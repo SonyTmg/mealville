@@ -21,7 +21,7 @@ class BookingsController < ApplicationController
 
     @booking.event = @event
     @booking.user_id = current_user.id
-     if @booking.valid?
+    if @booking.valid?
       # redirect to checkout
       Stripe.api_key = ENV["STRIPE_SECRET_KEY"]
       session = Stripe::Checkout::Session.create({
