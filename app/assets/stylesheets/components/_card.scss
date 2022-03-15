@@ -2,8 +2,15 @@
   /* Add shadows to create the "card" effect */
   height: auto;
   width: 360px;
-  transition: 0.3s;
+  transition: transform 0.3s;
   overflow: hidden;
+
+  &:hover {
+  .card-img {
+    transform: scale(1.2);
+    transition: transform 0.3s;
+  }
+  }
 
   .card-img-overlay {
     display: flex;
