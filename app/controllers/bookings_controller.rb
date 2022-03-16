@@ -105,8 +105,8 @@ class BookingsController < ApplicationController
                     sender: @booking.user,
                     body: params[:message][:body],
                     subject: params[:message][:subject]).booking_message_host_email.deliver_later
-    flash[:success] = "Your message has been sent to the host."
-    redirect_back(fallback_location: root_path)
+    flash[:notice] = "Your message has been sent to the host."
+    redirect_to dashboard_path
   end
 
   private
