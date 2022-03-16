@@ -8,8 +8,10 @@ class Booking < ApplicationRecord
 
   validate :ensure_total_guests_not_exceed_capacity, on: :create
 
+  validates :noguest, :numericality => { :greater_than_or_equal_to => 1 }
+
   def ensure_total_guests_not_exceed_capacity
-    if noguest > event.capacity || event.total_guests > event.remaining_capacity
+    if noguest > event.capacity || noguest > event.remaining_capacity
       errors.add(:noguest, "cannot exceed maximum capacity")
     end
   end
