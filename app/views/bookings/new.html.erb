@@ -1,88 +1,56 @@
-<%#= Booking confirmation page: contains booking deatils that wanna be confirmed %>
-<div class="bg-2 wrap">
-  <br>
-  <br>
-  <div class="container mt-5 pt-5 text-black">
-    <h1 class="h2 text-center">Booking Details</h1>
-      <p></p>
-    <div class="row">
-      <div class="col-6">
-        <label for="card details" class="col-sm-2 col-form-label"></label>
-        <input type="number" class="form-control" id="inputNumber" placeholder="card number">
-        <label for="card details" class="col-sm-2 col-form-label"></label>
-        <input type="number" class="form-control" id="inputNumber" placeholder="expiry">
-        <label for="card details" class="col-sm-2 col-form-label"></label>
-        <input type="number" class="form-control" id="inputNumber" placeholder="ccv">
-         <% @booking.errors.full_messages.each do |message| %>
-          <p> <%= message %>  </p>
-         <% end %>
-        <%= simple_form_for [@event, @booking] do |f| %>
-          <%= f.input :noguest, label: 'No. of guests' %>
-          <%= f.association :event, as: :hidden %>
-          <%= f.submit 'Proceed to pay', class: 'btn btn-lg btn-outline-primary' %>
-        <% end %>
-      </div>
-      <div class="col-6">
-        <div class="row">
-          <div class="col-12">
-            <div class="row">
-
-              <div class="card w-100 text-black confirm-card">
-                <img src="<%= url_for(@event.photos[0]) %>" alt="" class="img-fluid img-object-fit-cover card-img-top">
-                <div class="card-body py-2 px-3">
-                  <div class="card-title">
-                    <h1><%= @event.name %></h1>
-                  </div>
-                  <div class="card-divider">
-                    <div class="card-content w-100 d-flex justify-content-between">
-                      <div>
-                        <p> $<%= @event.price %> /day</p>
-                        <p> <i class="fa fa-map-marked-alt" aria-hidden="true"></i> <%= @event.location %> </p>
-                      </div>
-                      <div>
-                        <p><%= '⭐️' * [3, 4, 5].sample  %></p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card-footer">
-                    <p>
-                      Date: <%= @event.formatted_date %>
-                    </p>
-                    <p>
-                      From: <%= @event.formatted_start_time %>
-                      <br>
-                      To: <%= @event.formatted_end_time %>
-                    </p>
-                    <p>
-                      <%= @event.description %>
-                    </p>
-                    <p>
-                      Number of Guests: <%# @booking.noguest %>
-                    </p>
-                    <p>
-                      Booked by: <%# @event.user.email %>
-                    </p>
-                    <p>
-                      Total Price: <%# @event.price %>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-      </div>
+<%#= Booking confirmation page: contains booking details that wanna be confirmed %>
+<% if false %>
+  <div class="container">
+  <p>Row</p>
+  <div class="row p-5" style="background: yellow">
+    <div class="col-12 col-md-8 p-5" style="background:blue">
+      <p>Row</p>
+      <div class="row p-5" style="background: pink">
+        <div class="col-12 col-md-8 p-2" style="background:blue"></div>
+        <div class="col-12 col-md-4 p-2" style="background:green"></div>
       </div>
     </div>
-    <div class="row justify-content-center mt-5">
-      <div class="col-12">
-        <h4>Terms and conditions</h4>
-        <small class="text black">Reservations for stays and Sail vibe Experiences made on or before 14 March 2020, with a check-in date within the next 45 days from today, are covered by the policy and may be cancelled before check-in. Guests who cancel will have cancellation and refund options, and Hosts can cancel without charge or impact to their Superhost status. SailVibe will either refund, or issue travel credit that includes all service fees for covered cancellations. In order to cancel under the policy, you will be required to attest to the facts of and/or provide supporting documentation for your extenuating circumstance.
+    <div class="col-12 col-md-4 p-5" style="background:green"></div>
+  </div>
+</div>
+<% end %>
 
-  The Host’s cancellation policy will apply as usual to reservations made after 14 March 2020, except where a guest or Host is sick with COVID-19.
-
-  Cancellations will be handled according to the extenuating circumstances coverage in effect at the time of submission, and reservations that were already cancelled will not be reconsidered.
-
-  If a reservation has already begun (the check-in has passed) this extenuating circumstance does not apply.</small>
+<div class="bg-2 wrap">
+  <div class="container my-5 pt-5 text-black">
+    <h1 class="h2 text-center">Booking Details</h1>
+    <br>
+    <br>
+    <div class="row">
+      <div class="d-flex">
+        <div class="col-6">
+          <img src="<%= url_for(@event.photos[0]) %>" alt="Main picture" class="img-fluid img-object-fit-cover card-img-top">
+        </div>
+        <div class="col-6 px-5 text-white mt-5">
+          <h1 class="fw-bold h2"><%= @event.name %></h1>
+          <h3 class="h5 pt-3">$ <%= @event.price %> AUD/person</h3>
+          <div class="d-flex gap-4 pt-2">
+            <div class=""><i class="fa fa-map-marker-alt"></i> <%= @event.location %></div>
+            <div class=""><i class="fa fa-calendar-alt"></i>  <%= @event.formatted_date %></div>
+          </div>
+          <p>
+            <i class="fa fa-clock pt-1"></i>  <%= @event.formatted_start_time %> to <%= @event.formatted_end_time %>
+          </p>
+          <%= simple_form_for [@event, @booking], data: {controller:"pricing", pricing_price_value: "#{@event.price}"} do |f| %>
+          <%= f.input :noguest, label: 'No. of guests', input_html: { min: '1', data: {action: "pricing#calculateTotal", pricing_target:'input', price: @event.price.to_s}} %>
+          <%= f.association :event, as: :hidden %>
+          <div class="pt-2"> Booked by: <%= @event.user.email %> </div>
+          <div class="pt-2"> Total price: <span data-pricing-target="total"></span> </div>
+          <hr>
+          <h3 class="pt-5"> Covid Guidelines </h3>
+          <p> All Hosts and guests must agree to  wear a mask and practise social distancing when required by local laws and guidelines </p>
+          <h3 class=""> Booking Cancellation Policy </h3>
+          <p> You can cancel your booking 48 hours prior to the event with a full refund. If you cancel after that, you will be charged 50% of the event price. </p>
+          <br>
+          <hr>
+          <p> By proceeding to pay, you are Agreeing to Terms of Service and Privacy of MealVille. For more information, please read our Terms of Service </p>
+          <%= f.button :submit, class: 'btn btn-lg btn-outline-primary' %>
+        <% end %>
+        </div>
       </div>
     </div>
   </div>

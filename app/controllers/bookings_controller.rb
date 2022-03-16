@@ -52,7 +52,7 @@ class BookingsController < ApplicationController
       redirect_to session.url
       # redirect_to event_confirm_booking_path(event_id: params[:event_id])
     else
-      render 'events/show'
+      render :new
     end
   end
 
