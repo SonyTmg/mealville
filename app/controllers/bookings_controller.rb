@@ -30,6 +30,7 @@ class BookingsController < ApplicationController
             currency: 'aud',
             product_data: {
               name: @event.name,
+              images: [@event.photos[0].url],
             },
             unit_amount: @event.price_cents,
           },

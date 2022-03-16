@@ -76,8 +76,7 @@
                 <% end %>
               </td>
               <td>
-                <%= link_to 'Contact Host', booking_path(id: booking.id) %>
-                <%= link_to 'Event', event_path(id: booking.event.id) %>
+                <%= link_to 'Review Host', profile_path(id: booking.event.user.id) %>
               </td>
             </tr>
           <% end %>

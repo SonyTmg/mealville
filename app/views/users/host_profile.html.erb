@@ -26,9 +26,11 @@
       <hr>
       <h3>Events</h3>
       <div class="d-flex flex-column">
+        <ul>
         <% @user.events.each do |event| %>
-          Event name: <%= event.name %>
+          <li>Event name: <%= event.name %></li>
         <% end %>
+        </ul>
       </div>
 
       <% if current_user && @valid_user_ids.include?(current_user.id) %>
