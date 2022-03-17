@@ -29,7 +29,7 @@ class Event < ApplicationRecord
                     tsearch: { prefix: true }
                   }
 
-  scope :upcoming_events, -> { where('date > ?', Date.today) }
+  scope :upcoming_events, -> { where('date >= ?', Date.today) }
 
   def total_guests
     bookings.where(status: [:confirmed, :pending]).sum{ |booking| booking.noguest || 0 }
