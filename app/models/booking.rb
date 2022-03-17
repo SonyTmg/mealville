@@ -12,7 +12,7 @@ class Booking < ApplicationRecord
 
   def ensure_total_guests_not_exceed_capacity
     if noguest > event.capacity || noguest > event.remaining_capacity
-      errors.add(:noguest, "cannot exceed maximum capacity")
+      errors.add(:noguest, message: "exceeding the maximum capcacity. Try again with a smaller number.")
     end
   end
 
