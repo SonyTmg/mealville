@@ -1,6 +1,6 @@
 <div class="row" data-controller="showcase">
   <div class="col-12 col-lg-9 ">
-    <%= cl_image_tag(@event.photos[0].key, crop: :fill, class: 'img-fluid img-event-show d-none d-sm-block', data: {"showcase-target": "display"}) %>
+    <%= cl_image_tag(@event.photos[0].key, crop: :fill, width: 1200, height: 630, class: 'img-fluid img-event-show d-none d-sm-block', data: {"showcase-target": "display"}) %>
   </div>
   <div class="col-12 col-lg-3 gap-2 d-flex flex-row flex-sm-column flex-nowrap flex-sm-wrap overflow-scroll thumbnails-container">
     <%= @event.photos[0] && cl_image_tag(@event.photos[0].key, crop: :fill, class: 'img-fluid img-event-thumb', data: {"showcase-target": "thumb", "action": "mouseenter->showcase#feature"}) %>
