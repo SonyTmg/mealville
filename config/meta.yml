@@ -1,0 +1,7 @@
+# config/meta.yml
+
+meta_product_name: "MealVille"
+meta_title: "MealVille - Experience the food culture"
+meta_description: "MealVille allows you to experience authentic food culture, and sharing and enjoying the experience."
+meta_image: "mealville.svg"
+twitter_account: "@product_twitter_account"   # required for Twitter Cards
