@@ -58,8 +58,6 @@ ActiveRecord::Schema.define(version: 2022_03_13_040104) do
     t.string "name"
     t.text "description"
     t.string "location"
-    t.time "start_time"
-    t.time "end_time"
     t.integer "capacity"
     t.date "date"
     t.bigint "user_id", null: false
@@ -69,6 +67,8 @@ ActiveRecord::Schema.define(version: 2022_03_13_040104) do
     t.float "longitude"
     t.integer "price_cents", default: 0, null: false
     t.string "cuisine"
+    t.time "end_time"
+    t.time "start_time"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
