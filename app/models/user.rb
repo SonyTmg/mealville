@@ -34,7 +34,7 @@ class User < ApplicationRecord
     full_name || "#{first_name} #{last_name}"
   end
 
-  # return bookings for past hosted events if user is host
+  # return bookings for past hosted events if user is hosts
   def confirmed_bookings_for_hosted_events
     return [] unless host
 
